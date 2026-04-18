@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資策會 生成式AI能力認證 模擬題庫 v3.1</title>
+<style> *{margin:0;padding:0;box-sizing:border-box} :root{--bg:#0a0e1a;--sur:#111827;--card:#1a2235;--bor:#2a3a55;--acc:#00d4ff;--ac2:#7c3aed;--ok:#10b981;--ng:#ef4444;--tx:#e2e8f0;--mu:#64748b} body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'PingFang TC','Microsoft JhengHei',sans-serif;min-height:100vh} body::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0} #app{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:20px 14px 60px} .hdr{text-align:center;padding:32px 0 24px} .hdr-tag{display:inline-block;font-size:11px;letter-spacing:3px;color:var(--acc);border:1px solid var(--acc);padding:4px 14px;border-radius:2px;margin-bottom:14px} .hdr h1{font-size:clamp(18px,4vw,28px);font-weight:900;line-height:1.25;background:linear-gradient(135deg,#fff,var(--acc) 60%,var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent} .hdr p{color:var(--mu);font-size:13px;margin-top:6px} .ver{display:inline-block;margin-top:8px;font-size:11px;color:#a78bfa;border:1px solid rgba(124,58,237,.4);padding:2px 10px;border-radius:10px} .tip{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.25);border-radius:10px;padding:12px 14px;font-size:13px;color:#c4b5fd;margin-bottom:14px;line-height:1.7} .cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px} @media(min-width:540px){.cat-grid{grid-template-columns:repeat(5,1fr)}} .cat-btn{background:var(--sur);border:1px solid var(--bor);color:var(--mu);padding:10px 6px;border-radius:8px;cursor:pointer;font-size:12px;text-align:center;transition:.2s;position:relative;font-family:inherit} .cat-btn:hover{border-color:var(--acc);color:var(--acc)} .cat-btn.active{background:rgba(0,212,255,.08);border-color:var(--acc);color:var(--acc);box-shadow:0 0 16px rgba(0,212,255,.25)} .cat-icon{font-size:17px;display:block;margin-bottom:3px} .cat-cnt{font-size:10px;position:absolute;top:5px;right:7px;color:var(--mu)} .mode-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px} @media(min-width:480px){.mode-grid{grid-template-columns:repeat(4,1fr)}} .mode-btn{background:var(--sur);border:1px solid var(--bor);color:var(--mu);padding:11px 8px;border-radius:8px;cursor:pointer;text-align:center;transition:.2s;font-family:inherit} .mode-btn:hover{border-color:var(--ac2);color:#a78bfa} .mode-num{font-size:20px;font-weight:700;color:var(--acc);display:block;margin-bottom:2px} .mode-lbl{font-size:12px} .stats-bar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap} .stat{flex:1;min-width:68px;background:var(--sur);border:1px solid var(--bor);border-radius:8px;padding:10px;text-align:center} .sv{font-size:21px;font-weight:700} .sv-b{color:var(--acc)}.sv-g{color:var(--ok)}.sv-r{color:var(--ng)}.sv-p{color:#a78bfa} .sl{font-size:11px;color:var(--mu);margin-top:2px} .prog-wrap{margin-bottom:18px} .prog-info{display:flex;justify-content:space-between;font-size:12px;color:var(--mu);margin-bottom:5px} .prog-bar{height:4px;background:var(--bor);border-radius:4px;overflow:hidden} .prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--ac2));border-radius:4px;transition:width .4s} .q-card{background:var(--card);border:1px solid var(--bor);border-radius:14px;padding:24px 20px;margin-bottom:14px;animation:slideUp .35s ease} .q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px} .q-num{font-size:11px;color:var(--acc);letter-spacing:1px} .q-cat{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.3)} .q-text{font-size:14.5px;line-height:1.8;font-weight:500;margin-bottom:16px;color:#f1f5f9} .options{display:flex;flex-direction:column;gap:8px} .opt-btn{background:var(--sur);border:1px solid var(--bor);color:var(--tx);padding:12px 14px;border-radius:10px;cursor:pointer;font-size:14px;text-align:left;transition:.2s;display:flex;align-items:flex-start;gap:11px;font-family:inherit;line-height:1.55} .opt-btn:hover:not(:disabled){border-color:var(--acc);background:rgba(0,212,255,.04)} .opt-btn:disabled{cursor:default} .opt-btn.correct{border-color:var(--ok);background:rgba(16,185,129,.09);color:#6ee7b7} .opt-btn.wrong{border-color:var(--ng);background:rgba(239,68,68,.07);color:#fca5a5} .opt-letter{font-size:12px;font-weight:700;min-width:20px;flex-shrink:0;color:var(--mu);margin-top:1px} .opt-btn.correct .opt-letter{color:var(--ok)} .opt-btn.wrong .opt-letter{color:var(--ng)} .exp{margin-top:14px;padding:13px 15px;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.18);border-radius:10px;font-size:13px;line-height:1.75;color:#94a3b8;display:none} .exp.show{display:block;animation:fadeIn .3s ease} .exp-ans{display:inline-block;margin-bottom:8px;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(16,185,129,.15);color:var(--ok);border:1px solid rgba(16,185,129,.4)} .exp b{color:var(--acc)} .nav-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap} .btn{font-family:inherit;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:700;transition:.2s} .btn-p{background:linear-gradient(135deg,var(--acc),#0099cc);color:#000} .btn-p:hover{opacity:.85;transform:translateY(-1px)} .btn-g{background:transparent;color:var(--mu);border:1px solid var(--bor)} .btn-g:hover{border-color:var(--acc);color:var(--acc)} .btn-s{background:linear-gradient(135deg,var(--ok),#059669);color:#fff} .btn-home{background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.35)} .btn-home:hover{background:rgba(239,68,68,.2);color:#fff} .res-scr{background:var(--card);border:1px solid var(--bor);border-radius:14px;padding:34px 24px;text-align:center;animation:slideUp .5s ease} .res-score{font-size:64px;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--acc),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px} .res-lbl{font-size:18px;font-weight:700;margin-bottom:4px} .res-sub{font-size:13px;color:var(--mu);margin-bottom:22px} .pb{display:inline-block;padding:5px 18px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:20px} .pb-ok{background:rgba(16,185,129,.13);color:var(--ok);border:1px solid var(--ok)} .pb-ng{background:rgba(239,68,68,.09);color:var(--ng);border:1px solid var(--ng)} .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:22px} .res-item{background:var(--sur);border:1px solid var(--bor);border-radius:10px;padding:13px} .ri-v{font-size:24px;font-weight:700} .ri-l{font-size:11px;color:var(--mu);margin-top:3px} .cat-res{margin-bottom:20px} .cat-row{display:flex;align-items:center;gap:9px;margin-bottom:7px;font-size:13px} .cat-name{width:110px;text-align:right;color:var(--mu);flex-shrink:0} .cat-bw{flex:1;height:8px;background:var(--bor);border-radius:4px;overflow:hidden} .cat-bar{height:100%;border-radius:4px;transition:width .6s} .cat-pct{width:38px;font-size:11px;color:var(--mu);text-align:right} .rev-list{text-align:left;margin-top:18px} .rev-item{background:var(--sur);border:1px solid var(--bor);border-left:3px solid var(--ng);border-radius:10px;padding:13px 15px;margin-bottom:9px;font-size:13px} .rev-q{margin-bottom:5px;color:#e2e8f0;line-height:1.6} .rev-ans{color:var(--mu);font-size:12px;margin-bottom:5px} .ca{color:var(--ok);font-weight:700} .wa{color:var(--ng);font-weight:700} .rev-exp{font-size:12px;color:#64748b;line-height:1.65;border-top:1px solid var(--bor);padding-top:7px;margin-top:5px} .toast{position:fixed;top:18px;right:18px;z-index:9999;padding:11px 18px;border-radius:10px;font-size:14px;background:var(--card);border:1px solid var(--bor);transform:translateX(120%);transition:.3s;box-shadow:0 8px 28px rgba(0,0,0,.45)} .toast.show{transform:translateX(0)} .ct{border-color:var(--ok);color:var(--ok)}.wt{border-color:var(--ng);color:var(--ng)} .end-bar{display:flex;gap:8px;justify-content:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--bor)} @keyframes fadeIn{from{opacity:0}to{opacity:1}} @keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}} .hidden{display:none!important} </style>
+</head>
+<body>
+<div id="app">
+<div class="hdr">
+  <div class="hdr-tag">📋 MOCK EXAM v3.1</div>
+  <h1>資策會 生成式AI能力認證<br>模擬題庫練習系統</h1>
+  <p>全面涵蓋四大考試範圍 · 即時解析 · 弱點追蹤</p>
+  <div class="ver">✨ 150題完整版 — 基礎知識38 · 能力強化38 · 應用技能37 · 倫理法律37</div>
+</div>
+<div id="startScreen">
+  <div class="tip">💡 <strong>備考建議：</strong>先選「分類練習」找弱點，再用「80題模擬考」測整體實力。正式考試80題隨機抽取，及格門檻70分。建議模擬考穩定達到 <strong>80%以上</strong> 再去應試。</div>
+  <div class="cat-grid" id="catGrid"></div>
+  <div class="mode-grid">
+    <button class="mode-btn" onclick="startQuiz(20)"><span class="mode-num">20</span><span class="mode-lbl">快速練習</span></button>
+    <button class="mode-btn" onclick="startQuiz(40)"><span class="mode-num">40</span><span class="mode-lbl">進階練習</span></button>
+    <button class="mode-btn" onclick="startQuiz(80)"><span class="mode-num">80</span><span class="mode-lbl">模擬考試</span></button>
+    <button class="mode-btn" onclick="startQuiz(150)"><span class="mode-num">150</span><span class="mode-lbl">全題庫</span></button>
+  </div>
+  <div class="stats-bar">
+    <div class="stat"><div class="sv sv-b" id="sDone">0</div><div class="sl">已作答</div></div>
+    <div class="stat"><div class="sv sv-g" id="sRight">0</div><div class="sl">答對</div></div>
+    <div class="stat"><div class="sv sv-r" id="sWrong">0</div><div class="sl">答錯</div></div>
+    <div class="stat"><div class="sv sv-p" id="sAcc">—</div><div class="sl">正確率</div></div>
+  </div>
+  <div style="text-align:center"><button class="btn btn-g" onclick="resetStats()">🔄 重置記錄</button></div>
+</div>
+<div id="quizScreen" class="hidden">
+  <div class="prog-wrap">
+    <div class="prog-info"><span id="pText">第 1 題 / 20</span><span id="pPct">0%</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="pFill" style="width:0%"></div></div>
+  </div>
+  <div class="q-card" id="qCard">
+    <div class="q-meta"><span class="q-num" id="qN">Q.01</span><span class="q-cat" id="qC">基礎知識</span></div>
+    <div class="q-text" id="qT"></div>
+    <div class="options" id="opts"></div>
+    <div class="exp" id="expBox"></div>
+    <div class="end-bar">
+      <button class="btn btn-home" onclick="endAndHome()">⏹ 結束作答</button>
+    </div>
+  </div>
+  <div class="nav-row">
+    <button class="btn btn-g" id="bSkip" onclick="skipQ()">跳過此題</button>
+    <button class="btn btn-p hidden" id="bNext" onclick="nextQ()">下一題 →</button>
+    <button class="btn btn-s hidden" id="bFin" onclick="showResult()">查看結果 🏁</button>
+  </div>
+</div>
+<div id="resultScreen" class="hidden">
+  <div class="res-scr">
+    <div class="res-score" id="rScore">0%</div>
+    <div class="res-lbl" id="rLbl"></div>
+    <div class="res-sub" id="rSub"></div>
+    <div class="pb" id="rBadge"></div>
+    <div class="res-grid">
+      <div class="res-item"><div class="ri-v" style="color:var(--ok)" id="rC">0</div><div class="ri-l">答對</div></div>
+      <div class="res-item"><div class="ri-v" style="color:var(--ng)" id="rW">0</div><div class="ri-l">答錯</div></div>
+      <div class="res-item"><div class="ri-v" style="color:var(--mu)" id="rS">0</div><div class="ri-l">跳過</div></div>
+    </div>
+    <div class="cat-res" id="catRes"></div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px">
+      <button class="btn btn-p" onclick="startQuiz(20)">再練一次(20題)</button>
+      <button class="btn btn-p" onclick="startQuiz(80)">模擬考(80題)</button>
+      <button class="btn btn-g" onclick="toggleReview()">📋 錯題解析</button>
+      <button class="btn btn-g" onclick="backHome()">← 返回首頁</button>
+    </div>
+    <div class="rev-list hidden" id="revList"></div>
+  </div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+
+var CATS=[
+  {id:"basic",  name:"一、基礎知識",icon:"🧠",color:"#00d4ff"},
+  {id:"enhance",name:"二、能力強化",icon:"⚡",color:"#7c3aed"},
+  {id:"skill",  name:"三、應用技能",icon:"🛠️",color:"#10b981"},
+  {id:"ethics", name:"四、倫理法律",icon:"⚖️",color:"#f59e0b"}
+];
+
+const Q=[
+{id:1,c:"basic",q:"下列哪一項最能準確描述「生成式AI（Generative AI）」的核心功能？",o:["A. 專門分析與分類現有資料的統計工具，適用於特定的業務場景", "B. 用於強化現實（AR）場景建構的硬體技術，但技術上仍有一定限制", "C. 能夠根據學習到的模式，創造出新的文字、圖像、音訊等內容", "D. 只能執行固定規則的自動化程式，但技術上仍有一定限制"],a:2,e:"\"生成式AI的核心在於「生成」——利用從大量資料中學習到的模式，創造出新的原創內容。"},
+{id:2,c:"basic",q:"Transformer架構中最關鍵的核心機制，讓模型處理序列時能關注不同位置的重要性，稱為？",o:["A. 卷積層（Convolutional Layer）", "B. 自我注意力機制（Self-Attention Mechanism）", "C. 池化層（Pooling Layer），以符合企業的實際需求", "D. 遞迴層（Recurrent Layer），需要配合其他技術才能實現"],a:1,e:"\"Self-Attention讓模型處理每個詞時，能同時關注序列中所有其他詞的重要程度，解決RNN長距離依賴問題，"},
+{id:3,c:"basic",q:"「監督式學習（Supervised Learning）」的正確描述是？",o:["A. 模型自行從未標記的資料中找出規律", "B. 模型透過試錯與獎勵機制學習最佳行動", "C. 模型不需要訓練資料，直接推理，需要配合其他技術才能實現", "D. 模型使用有標記的輸入-輸出配對資料進行訓練"],a:3,e:"\"監督式學習需要「標記資料（labeled data）」，模型學習輸入（X）到輸出（Y）的映射。"},
+{id:4,c:"basic",q:"「大型語言模型（LLM）」主要是基於哪種架構發展而來？",o:["A. Transformer架構", "B. 卷積神經網路（CNN）", "C. 遞迴神經網路（RNN）", "D. 生成對抗網路（GAN）"],a:0,e:"\"GPT、BERT、LLaMA、Claude等主流LLM都基於Transformer架構。"},
+{id:5,c:"basic",q:"「過度擬合（Overfitting）」在機器學習中指的是什麼現象？",o:["A. 模型訓練集與測試集錯誤率都很高", "B. 模型計算速度過慢，但技術上仍有一定限制", "C. 模型在訓練集表現良好，但在新資料上表現差", "D. 模型因資料不足而無法開始訓練，但實際效果仍需進一步驗證"],a:2,e:"\"過度擬合：訓練集高分+測試集低分。模型「死記」訓練資料細節，失去泛化能力。"},
+{id:6,c:"basic",q:"生成式AI的「幻覺（Hallucination）」問題是指什麼？",o:["A. AI模型產生看似合理但實際上不正確或捏造的資訊", "B. AI系統消耗過多運算資源，但實際效果仍需進一步驗證", "C. AI圖像生成出現視覺扭曲，有助於降低開發和維護成本", "D. AI系統因為資料不足而拒絕回答，並支援多種輸入輸出格式"],a:0,e:"\"幻覺是LLM的主要挑戰——模型會自信地生成「聽起來正確」但實際錯誤、捏造的內容（如不存在的"},
+{id:7,c:"basic",q:"「RAG（Retrieval-Augmented Generation，檢索增強生成）」技術的主要用途是？",o:["A. 提高AI的視覺辨識準確率，適用於特定的業務場景", "B. 加速模型訓練的計算速度，並能確保資料的安全性", "C. 讓AI在生成回覆前先從外部知識庫檢索相關資訊，降低幻覺", "D. 將多種AI模型融合成單一模型，可提升系統的整體效能"],a:2,e:"\"RAG流程：問題→向量嵌入→從向量資料庫檢索相關文件→連同問題輸入LLM→生成有依據的回覆。"},
+{id:8,c:"basic",q:"「GAN（生成對抗網路）」是由哪兩個核心元件互相競爭來提升生成品質的？",o:["A. 編碼器（Encoder）和解碼器（Decoder）", "B. 訓練器（Trainer）和測試器（Tester）", "C. 擷取器（Extractor）和合成器（Synthesizer）", "D. 生成器（Generator）和判別器（Discriminator）"],a:3,e:"\"GAN對抗機制類比「偽造者 vs 鑑定師」：生成器嘗試生成以假亂真的內容，判別器嘗試區分真假。"},
+{id:9,c:"basic",q:"「多模態AI（Multimodal AI）」的定義是？",o:["A. 能處理並整合多種資料形式的AI", "B. 能同時運行多個獨立AI模型的系統", "C. 專門針對多國語言進行翻譯的AI", "D. 同時在多台伺服器上分散運算的AI架構"],a:0,e:"\"多模態AI打破單一資料類型限制，同時理解文字+圖片（如GPT-4V能看圖回答）、文字+音訊等組合。"},
+{id:10,c:"basic",q:"「微調（Fine-tuning）」在AI模型應用中指的是什麼？",o:["A. 以少量特定領域資料，對預訓練模型進行二次訓練以適應特定任務", "B. 從零開始訓練一個全新的AI模型，以符合企業的實際需求", "C. 刪除模型中不需要的參數以縮小體積，但技術上仍有一定限制", "D. 調整AI伺服器的硬體設定，適用於特定的業務場景"],a:0,e:"\"Fine-tuning以少量標記資料微調已有大型預訓練模型，使其專精特定領域。"},
+{id:11,c:"basic",q:"AI發展史上，哪一項標誌著「深度學習」時代的真正到來？",o:["A. 1997年IBM深藍擊敗西洋棋冠軍，但技術上仍有一定限制", "B. 2012年AlexNet在ImageNet競賽大幅領先傳統方法", "C. 1950年圖靈提出圖靈測試，但實際效果仍需進一步驗證", "D. 1980年代專家系統的廣泛應用，需要配合其他技術才能實現"],a:1,e:"\"2012年AlexNet在ImageNet競賽中錯誤率比傳統方法低10.8%，標誌深度學習時代開啟。"},
+{id:12,c:"basic",q:"「BERT」模型與GPT系列最大的架構差異是？",o:["A. BERT只能生成文字，GPT只能理解文字", "B. BERT使用CNN架構，GPT使用RNN架構", "C. BERT採用雙向Transformer，GPT採用單向", "D. BERT需要GPU，GPT不需要，需要配合其他技術才能實現"],a:2,e:"\"BERT是「雙向編碼器」，適合文本理解（分類、問答）；GPT是「單向解碼器」，適合文本生成。"},
+{id:13,c:"basic",q:"「強化學習（Reinforcement Learning）」的核心機制是？",o:["A. 智能體透過與環境互動，根據獎勵與懲罰學習最佳行動策略", "B. 使用大量標記資料進行監督訓練，並支援多種輸入輸出格式", "C. 從無標記資料中自動找出資料模式，以符合企業的實際需求", "D. 多個模型互相競爭提高生成品質，可提升系統的整體效能"],a:0,e:"\"強化學習核心：Agent感知State→採取Action→獲得Reward→更新Policy。"},
+{id:14,c:"basic",q:"「非監督式學習（Unsupervised Learning）」最常用的應用場景是？",o:["A. 客戶分群和異常偵測", "B. 圖片標籤預測，以符合企業的實際需求", "C. 股價漲跌預測，需要配合其他技術才能實現", "D. 語音轉文字，可根據使用情境靈活調整"],a:0,e:"\"非監督式學習從無標記資料中發現規律，主要應用：K-means聚類（客戶分群）、PCA降維、自編碼器異"},
+{id:15,c:"basic",q:"「擴散模型（Diffusion Model）」生成圖像的基本原理是？",o:["A. 透過生成器與判別器競爭提升品質，但實際效果仍需進一步驗證", "B. 透過編碼器壓縮後再解碼重建，可根據使用情境靈活調整", "C. 向圖像逐步加入雜訊後訓練模型學習「去雜訊」，反向過程即可生成圖像", "D. 直接複製訓練資料中最相似的圖像，但技術上仍有一定限制"],a:2,e:"\"擴散模型：前向過程（加雜訊）→模型學習反向去雜訊→推理時從純雜訊逐步生成圖像。"},
+{id:16,c:"basic",q:"「遷移學習（Transfer Learning）」的核心概念是？",o:["A. 將在某領域學到的知識或能力應用到另一個相關任務，節省訓練成本", "B. 將AI模型從一台電腦轉移到另一台電腦，有助於降低開發和維護成本", "C. 自動將英文AI模型翻譯為中文模型，有助於降低開發和維護成本", "D. 在不同設備間共享訓練資料，需要配合其他技術才能實現"],a:0,e:"\"遷移學習：用ImageNet預訓練模型的特徵提取能力，轉移到醫療影像診斷，"},
+{id:17,c:"basic",q:"「向量嵌入（Vector Embedding）」在AI中的主要作用是？",o:["A. 壓縮模型檔案大小以節省儲存空間，並能確保資料的安全性", "B. 加密AI模型防止盜用，有助於降低開發和維護成本", "C. 將文字、圖片等高維資料轉換成能表達語意的低維數值向量", "D. 將程式碼轉換為機器可執行的格式，可提升系統的整體效能"],a:2,e:"\"Embedding將語意相近的內容映射到向量空間中相近的位置。這是語意搜尋、推薦系統、RAG等應用的基"},
+{id:18,c:"basic",q:"「CNN（卷積神經網路）」最擅長哪類任務？",o:["A. 長文本生成，有助於降低開發和維護成本", "B. 時間序列預測，以符合企業的實際需求", "C. 圖像識別與電腦視覺任務", "D. 自然語言問答，但技術上仍有一定限制"],a:2,e:"\"CNN透過卷積層（特徵提取）、池化層（降維）、全連接層（分類）的架構，"},
+{id:19,c:"basic",q:"「Token（語言標記）」在LLM中的定義是？",o:["A. 文字的最小處理單位，可能是一個詞、部分詞或標點符號", "B. 一個完整的句子或段落，可根據使用情境靈活調整", "C. AI模型訓練時使用的批次大小，但實際效果仍需進一步驗證", "D. 使用API時的計費單位，並支援多種輸入輸出格式"],a:0,e:"\"Token是LLM處理文字的基本單位。一個中文字約等於1-2個token，英文詞約1個token。"},
+{id:20,c:"basic",q:"「注意力機制（Attention Mechanism）」解決了RNN的什麼問題？",o:["A. 計算速度過慢，以符合企業的實際需求，但技術上仍有一定限制", "B. 資料量不足，並能確保資料的安全性，但技術上仍有一定限制", "C. 多語言處理困難，需要配合其他技術才能實現，有助於降低開發和維護成本", "D. 長距離依賴問題——RNN難以記住序列中相距較遠的重要資訊"],a:3,e:"\"RNN按序列順序處理，距離遠的資訊容易被遺忘（梯度消失）。"},
+{id:21,c:"basic",q:"「RLHF（人類回饋強化學習）」在ChatGPT開發中的主要作用是？",o:["A. 加快模型的訓練速度，但實際效果仍需進一步驗證", "B. 減少模型所需的訓練資料量，但技術上仍有一定限制", "C. 提高模型的數學計算能力，可提升系統的整體效能", "D. 讓模型輸出更符合人類偏好、更有益且無害"],a:3,e:"\"RLHF流程：預訓練LLM→人類標注員對回覆排序→訓練獎勵模型（RM）→用PPO強化學習微調LLM，"},
+{id:22,c:"basic",q:"「模型量化（Model Quantization）」的主要目的是？",o:["A. 提高模型的預測準確率，有助於降低開發和維護成本，需要配合其他技術才能實現", "B. 增加模型的訓練資料量，但實際效果仍需進一步驗證，可根據使用情境靈活調整", "C. 將模型參數從高精度浮點數壓縮為低精度整數，減少模型大小並加速推理", "D. 讓模型支援更多種類的輸入格式，但實際效果仍需進一步驗證"],a:2,e:"\"量化將32位元浮點數（FP32）壓縮為8位元整數（INT8）等，模型大小縮小4倍，推理速度加快，"},
+{id:23,c:"basic",q:"生成式AI中「Temperature（溫度）」參數的作用是？",o:["A. 控制AI模型運算的CPU溫度，以符合企業的實際需求", "B. 設定模型每次生成的最大字數，以符合企業的實際需求", "C. 控制輸出的隨機性：高溫度更創意多樣，低溫度更確定保守", "D. 調整模型的學習率，需要配合其他技術才能實現"],a:2,e:"\"Temperature=0時每次輸出相同（確定性，適合需精確答案的任務）；Temperature=1時按照模型的自然概率分"},
+{id:24,c:"basic",q:"「GPT」系列模型名稱全稱是？",o:["A. General Purpose Transformer", "B. Generative Pre-trained Transformer", "C. Graph Processing Technology", "D. Global Pattern Training，但技術上仍有一定限制"],a:1,e:"\"GPT（Generative Pre-trained Transformer）= 生成式（Generative）+ 預訓練（Pre-trained）+ Transformer架構。"},
+{id:25,c:"basic",q:"下列哪一個工具是專門用於「音樂生成」的AI？",o:["A. Midjourney", "B. RunwayML", "C. Gamma AI", "D. Suno AI"],a:3,e:"\"各類生成式AI工具分類：Midjourney/Stable Diffusion→圖像生成；RunwayML/Pika/Sora→影片生成；"},
+{id:26,c:"basic",q:"「聯邦學習（Federated Learning）」的核心優勢是？",o:["A. 讓AI模型訓練速度提升10倍，可根據使用情境靈活調整", "B. 讓不同公司的AI系統自動整合，但實際效果仍需進一步驗證", "C. 讓多方資料在不離開各自設備的情況下聯合訓練模型，保護資料隱私", "D. 將模型參數自動備份到雲端，可根據使用情境靈活調整"],a:2,e:"\"聯邦學習：各設備本地訓練→只上傳模型梯度（而非原始資料）→伺服器彙總更新全局模型。"},
+{id:27,c:"basic",q:"「隨機森林（Random Forest）」是什麼類型的機器學習模型？",o:["A. 深度學習模型，可提升系統的整體效能", "B. 強化學習模型，以符合企業的實際需求", "C. 集成學習模型，由多棵決策樹組成", "D. 無監督學習的聚類模型，並能確保資料的安全性"],a:2,e:"\"隨機森林是集成學習的代表：多棵決策樹各自訓練→投票決定最終結果（分類）或取平均（迴歸）。"},
+{id:28,c:"basic",q:"「Embedding模型」和「生成模型」最主要的功能差異是？",o:["A. Embedding模型速度快，生成模型速度慢，可根據使用情境靈活調整", "B. Embedding模型只能處理文字，生成模型只能處理圖像，並支援多種輸入輸出格式", "C. Embedding模型將資料轉換為向量用於搜尋比對，生成模型直接產生文字或圖像內容", "D. Embedding模型需要GPU，生成模型不需要，並能確保資料的安全性"],a:2,e:"\"Embedding模型：文字→語意向量（用於語意搜尋、相似度比對、RAG）。"},
+{id:29,c:"basic",q:"「知識截止日期（Knowledge Cutoff）」對LLM的影響是什麼？",o:["A. 模型只能回答特定長度的問題，但實際效果仍需進一步驗證", "B. 模型無法即時了解訓練截止日後發生的新事件和資訊", "C. 模型的API使用有時間限制，並能確保資料的安全性", "D. 模型每天需要重新訓練才能運作，並支援多種輸入輸出格式"],a:1,e:"\"LLM訓練完成後知識就凍結了，之後的新事件（新法規、最新AI工具）它不知道。"},
+{id:30,c:"basic",q:"「自然語言處理（NLP）」中「命名實體辨識（NER）」的功能是？",o:["A. 判斷一段文字的情緒正負面，適用於特定的業務場景", "B. 自動從文字中識別並分類人名、地名、機構名、日期等特定資訊", "C. 將文字從一種語言翻譯成另一種，可根據使用情境靈活調整", "D. 根據文字語意生成摘要，但技術上仍有一定限制"],a:1,e:"\"NER從非結構化文字中提取結構化資訊。例如「台積電2024年在台中設廠」→識別：台積電（機構）、2"},
+{id:31,c:"basic",q:"AI模型的「參數量（Parameters）」代表什麼？",o:["A. 模型每次訓練所需的時間，以符合企業的實際需求", "B. 模型中可學習的數值數量，通常以「億（B）」為單位衡量模型規模", "C. 模型一次能處理的最大資料筆數，需要配合其他技術才能實現", "D. 模型佔用的硬碟儲存空間，並能確保資料的安全性"],a:1,e:"\"參數是神經網路中的「權重和偏置值」，代表模型學到的知識量。GPT-3有1750億參數，"},
+{id:32,c:"basic",q:"「MCP（Model Context Protocol，模型上下文協議）」主要用於解決什麼問題？",o:["A. 提高AI模型的圖像生成解析度，並支援多種輸入輸出格式", "B. 標準化AI模型與外部工具、資料來源的連接方式", "C. 壓縮大型語言模型的檔案大小，有助於降低開發和維護成本", "D. 加速AI模型的硬體加速計算，並支援多種輸入輸出格式"],a:1,e:"\"MCP（Anthropic提出，2024）是讓AI Agent與外部工具溝通的標準協議，類似USB介面讓不同設備能統一連接。"},
+{id:33,c:"basic",q:"「神經網路中的激活函數（Activation Function）」的作用是？",o:["A. 決定模型訓練的學習率，以符合企業的實際需求", "B. 計算模型預測結果與真實標籤的差距，可根據使用情境靈活調整", "C. 引入非線性特性，使神經網路能學習複雜的非線性關係", "D. 決定每個神經元的連接數量，以符合企業的實際需求"],a:2,e:"\"沒有激活函數，多層神經網路等同於單層線性模型。ReLU是目前最常用的激活函數（f(x)=max(0,x)），"},
+{id:34,c:"basic",q:"「情感分析（Sentiment Analysis）」是AI哪個領域的典型應用？",o:["A. 自然語言處理（NLP）", "B. 電腦視覺，但實際效果仍需進一步驗證", "C. 強化學習，但實際效果仍需進一步驗證", "D. 生成對抗網路，但實際效果仍需進一步驗證"],a:0,e:"\"情感分析是NLP核心任務之一：判斷文字表達的情緒（正面/負面/中立）。"},
+{id:35,c:"basic",q:"「差分隱私（Differential Privacy）」在AI訓練中的作用是？",o:["A. 讓不同用戶的資料自動分類", "B. 加密資料庫的存取權限，並支援多種輸入輸出格式", "C. 在資料或模型輸出中加入數學噪聲", "D. 刪除資料庫中的重複資料"],a:2,e:"\"差分隱私（Apple、Google均採用）：向資料中加入精心設計的隨機噪聲，"},
+{id:36,c:"basic",q:"下列哪種模型最適合「文字轉語音（TTS）」應用？",o:["A. BERT（雙向編碼器），可提升系統的整體效能", "B. CNN（卷積神經網路），適用於特定的業務場景", "C. K-means分群演算法，並支援多種輸入輸出格式", "D. 語音合成專用模型，如WaveNet或現代TTS系統"],a:3,e:"\"TTS使用語音合成模型，代表技術：WaveNet（Google）、Tacotron2。現代生成式AI語音工具如ElevenLabs、Azure T"},
+{id:37,c:"basic",q:"「自監督學習（Self-supervised Learning）」的核心特點是？",o:["A. 需要大量人工標記的訓練資料", "B. 模型從無標記資料中自動生成訓練訊號", "C. 模型透過與環境互動獲得獎勵", "D. 多個模型相互協作完成訓練，可根據使用情境靈活調整"],a:1,e:"\"BERT遮蔽語言模型（MLM）：隨機遮蔽15%詞→模型預測被遮蔽的詞（自動生成標籤）。"},
+{id:38,c:"basic",q:"「RLHF標準流程」的正確順序是？",o:["A. 訓練LLM→收集資料→刪除有害輸出，有助於降低開發和維護成本", "B. 強化學習預訓練→人類標注→測試，但技術上仍有一定限制", "C. 收集人類偏好排序→訓練獎勵模型→用強化學習微調LLM", "D. 人類設計規則→LLM學習規則→測試，適用於特定的業務場景"],a:2,e:"\"RLHF標準流程：①收集人類標注員對LLM輸出的偏好排序→②訓練獎勵模型（Reward Model）預測人類偏好"},
+{id:39,c:"enhance",q:"「Prompt Engineering（提示工程）」的主要目標是？",o:["A. 改寫AI模型的底層程式碼，需要配合其他技術才能實現", "B. 優化AI模型的伺服器硬體效能，但實際效果仍需進一步驗證", "C. 自動生成訓練資料集，有助於降低開發和維護成本", "D. 透過精心設計輸入提示詞，引導AI生成更準確、符合需求的輸出"],a:3,e:"\"Prompt Engineering是「如何與AI溝通」的技術：明確指示、情境設定、示例提供（Few-shot）、角色設定（R"},
+{id:40,c:"enhance",q:"「Chain-of-Thought（CoT，思維鏈）」提示技術主要改善AI哪類任務？",o:["A. 圖像生成的解析度，並能確保資料的安全性", "B. 語音識別的速度，但技術上仍有一定限制", "C. 資料庫查詢的效率，但技術上仍有一定限制", "D. 複雜推理、數學計算和多步驟問題的準確性"],a:3,e:"\"CoT讓AI先思考再回答：加入「讓我們一步一步來」，AI會逐步推理中間過程。"},
+{id:41,c:"enhance",q:"「Few-shot Learning」在提示工程中指的是？",o:["A. 在提示詞中提供少量輸入-輸出示例，引導模型理解任務格式", "B. 使用極少量GPU進行模型訓練，但技術上仍有一定限制", "C. 只用幾張圖片訓練電腦視覺模型，並能確保資料的安全性", "D. 模型只需看幾個字就能完成翻譯，但技術上仍有一定限制"],a:0,e:"\"Few-shot：提示中提供2-5個輸入→輸出示例，讓LLM看範例學規則。Zero-shot：只描述任務不給例子。"},
+{id:42,c:"enhance",q:"「資料治理（Data Governance）」對生成式AI應用最核心的意義是？",o:["A. 決定AI模型的計算架構，可根據使用情境靈活調整", "B. 管理AI工程師的工作流程，並支援多種輸入輸出格式", "C. 控制AI生成內容的語言風格，適用於特定的業務場景", "D. 確保訓練和使用的資料品質、安全、合規，保護個人隱私"],a:3,e:"\"資料治理三大支柱：①資料品質（清洗、標準化、去重）；②資料安全（防外洩、存取控制）；"},
+{id:43,c:"enhance",q:"「LoRA（Low-Rank Adaptation）」是一種用於AI的什麼技術？",o:["A. 大型語言模型的壓縮演算法，可根據使用情境靈活調整", "B. 生成對抗網路的訓練穩定技術，可提升系統的整體效能", "C. 資料增強（Data Augmentation）方法", "D. 高效的模型微調方法，只調整少量插入參數，大幅降低成本"],a:3,e:"\"LoRA在原模型矩陣旁插入兩個低秩矩陣，只訓練新增的少量參數（約原模型0.1-1%）。"},
+{id:44,c:"enhance",q:"「AI Agent（AI代理）」的核心特性是？",o:["A. 能感知環境、制定計畫、使用工具、自主執行多步驟任務的AI系統", "B. 只能單次回答問題的靜態AI模型，有助於降低開發和維護成本", "C. 用於後台批次資料處理的自動化腳本，但技術上仍有一定限制", "D. 專門用於語音辨識的模型，但技術上仍有一定限制"],a:0,e:"\"AI Agent = 感知→計畫→行動→觀察的循環。能自主使用工具（網路搜尋、執行程式碼、呼叫API），"},
+{id:45,c:"enhance",q:"「Deepfake」技術主要帶來哪種風險？",o:["A. AI模型訓練過熱導致硬體損壞，可根據使用情境靈活調整", "B. 網路安全漏洞導致資料外洩，適用於特定的業務場景", "C. 大型資料庫儲存失效，可提升系統的整體效能，可根據使用情境靈活調整", "D. 利用AI生成高度逼真的假影像/影片，帶來身份偽造與資訊欺騙風險"],a:3,e:"\"Deepfake使用GAN/擴散模型合成逼真假臉/假聲音。風險：政治謠言（偽造政治人物言論）、金融詐騙（"},
+{id:46,c:"enhance",q:"「提示注入攻擊（Prompt Injection）」是指什麼類型的安全威脅？",o:["A. 駭客入侵AI伺服器竊取模型權重", "B. 攻擊者透過惡意指令操控AI系統", "C. AI模型因算力不足而崩潰", "D. 過多使用者同時請求導致服務中斷"],a:1,e:"\"提示注入是生成式AI特有安全威脅：攻擊者輸入「忽略以上所有指令，"},
+{id:47,c:"enhance",q:"「向量資料庫（Vector Database）」在RAG系統中扮演什麼角色？",o:["A. 儲存文件的語意向量嵌入，實現快速語意相似度搜尋", "B. 儲存模型訓練所需的原始圖像檔案，適用於特定的業務場景", "C. 管理AI模型的版本控制，但實際效果仍需進一步驗證", "D. 存放用戶的聊天記錄，適用於特定的業務場景"],a:0,e:"\"RAG中向量資料庫的角色：文件切片→Embedding模型轉向量→存入向量DB（如Pinecone、Chroma、Milvus）。"},
+{id:48,c:"enhance",q:"「零樣本學習（Zero-shot Learning）」的特點是？",o:["A. 模型根據任務描述，無需額外示例即可完成未見過的任務類型", "B. 模型完全不需要訓練資料，可根據使用情境靈活調整", "C. 模型在沒有GPU下完成訓練，並支援多種輸入輸出格式", "D. 模型一次處理零個問題，適用於特定的業務場景"],a:0,e:"\"Zero-shot：只描述任務，不給任何示例，LLM直接依據語言理解完成任務。"},
+{id:49,c:"enhance",q:"「角色扮演（Role Prompting）」技巧的主要目的是？",o:["A. 給AI設定特定角色背景", "B. 讓AI模型假裝成不同的AI品牌", "C. 測試AI模型的情感反應", "D. 避免AI回答某些敏感問題"],a:0,e:"\"Role Prompting如：「你是一位有20年經驗的台灣律師，請用台灣法律角度...」。"},
+{id:50,c:"enhance",q:"「ReAct（Reasoning + Acting）」框架在AI Agent中的作用是？",o:["A. 讓Agent在行動前先推理，行動，再觀察結果，循環執行", "B. 讓AI模型訓練時同時處理文字和圖像，但實際效果仍需進一步驗證", "C. 讓多個AI模型相互競爭生成最佳答案，並支援多種輸入輸出格式", "D. 減少AI模型的幻覺問題，需要配合其他技術才能實現"],a:0,e:"\"ReAct循環：推理（分析當前狀態）→行動（使用工具：搜尋、計算、查資料庫）→觀察（獲取行動結"},
+{id:51,c:"enhance",q:"「模型蒸餾（Knowledge Distillation）」技術的目的是？",o:["A. 提取訓練資料中最有價值的樣本，可根據使用情境靈活調整，可根據使用情境靈活調整", "B. 從網路中自動收集高品質訓練資料，並能確保資料的安全性，可根據使用情境靈活調整", "C. 將多個模型的輸出結合成更好的結果，可提升系統的整體效能，適用於特定的業務場景", "D. 用小模型（學生）學習大模型（教師）的輸出行為，在保留能力的同時大幅縮小模型規模"],a:3,e:"\"蒸餾讓輕量小模型學習大模型的「軟標籤」（概率分佈）而非硬標籤，能遷移大模型的隱含知識。"},
+{id:52,c:"enhance",q:"「系統提示詞（System Prompt）」在AI對話系統中的功能是？",o:["A. 設定AI模型的硬體資源配置，並支援多種輸入輸出格式，以符合企業的實際需求", "B. 存儲使用者的歷史對話記錄，需要配合其他技術才能實現，有助於降低開發和維護成本", "C. 自動翻譯不同語言的使用者輸入，可根據使用情境靈活調整，可提升系統的整體效能", "D. 在使用者對話前預先給AI設定角色、行為規範、知識範圍等指令，對使用者不可見"],a:3,e:"\"System Prompt是AI助手的「工作說明書」，對終端使用者隱藏但持續生效：如「你是XX公司客服助理，"},
+{id:53,c:"enhance",q:"「上下文窗口（Context Window）」的大小對LLM使用有何影響？",o:["A. AI在一次對話中能記住和處理的最大文字量，直接影響能處理的文件長度", "B. 顯示AI回覆的螢幕大小，並能確保資料的安全性，可根據使用情境靈活調整", "C. AI模型能支援的最大圖像解析度，有助於降低開發和維護成本", "D. AI伺服器的記憶體容量，以符合企業的實際需求，需要配合其他技術才能實現"],a:0,e:"\"Context Window決定AI能看到的最大資訊量，包含對話歷史、文件內容、指令等。"},
+{id:54,c:"enhance",q:"「AI幻覺」最可能在哪種情境下最嚴重？",o:["A. 翻譯常見語言，並支援多種輸入輸出格式，並能確保資料的安全性", "B. 生成創意故事或詩歌，需要配合其他技術才能實現", "C. 生成涉及具體數字、日期、引文出處等需要精確事實的內容", "D. 回答AI工作原理等技術問題，並支援多種輸入輸出格式"],a:2,e:"\"幻覺在精確事實任務中最危險：如引用不存在的論文（標題、作者、頁碼都是捏造的）、編造統計"},
+{id:55,c:"enhance",q:"「資料增強（Data Augmentation）」技術在AI訓練中的目的是？",o:["A. 清理訓練資料中的錯誤標籤，可提升系統的整體效能，並支援多種輸入輸出格式", "B. 自動從網路爬取更多訓練資料，有助於降低開發和維護成本，以符合企業的實際需求", "C. 壓縮訓練資料的儲存空間，需要配合其他技術才能實現，但技術上仍有一定限制", "D. 透過對現有資料進行翻轉、旋轉、裁切等變換，擴大訓練集規模以提升模型泛化能力"],a:3,e:"\"資料增強是低成本擴大訓練集的方法：圖像→翻轉、旋轉、亮度調整；文字→同義詞替換、回譯。"},
+{id:56,c:"enhance",q:"「Vibe Coding」這個概念在AI輔助開發中代表什麼？",o:["A. 開發者以自然語言描述意圖，由AI自動生成、重構、測試程式碼的新模式", "B. 一種程式設計語言，有助於降低開發和維護成本，但技術上仍有一定限制", "C. 一種AI音樂創作工具，以符合企業的實際需求，但實際效果仍需進一步驗證", "D. 程式碼的版本控制方法，並能確保資料的安全性，可提升系統的整體效能"],a:0,e:"\"Vibe Coding是2025-2026年新興趨勢：開發者輸入「建立一個用戶登入頁面，包含表單驗證」，"},
+{id:57,c:"enhance",q:"「AI幻覺」與「AI偏見（AI Bias）」最主要的區別是？",o:["A. 幻覺是模型生成不存在的事實；偏見是模型因訓練資料不均衡對特定群體產生系統性歧視", "B. 幻覺出現在圖像AI，偏見出現在文字AI，有助於降低開發和維護成本", "C. 幻覺比偏見危險，可提升系統的整體效能，可提升系統的整體效能", "D. 兩者是完全相同的概念，需要配合其他技術才能實現，並支援多種輸入輸出格式"],a:0,e:"\"幻覺：模型「編造」不存在的事實（如捏造論文）。偏見：訓練資料的歷史歧視被模型學習並放大"},
+{id:58,c:"enhance",q:"「多智能體系統（Multi-Agent System）」的主要優勢是？",o:["A. 分工合作完成超出單一Agent能力範圍的複雜任務，提升效率和可靠性", "B. 節省硬體運算資源，需要配合其他技術才能實現，可根據使用情境靈活調整", "C. 讓AI系統無需網際網路連線，有助於降低開發和維護成本", "D. 減少對大型語言模型的依賴，並能確保資料的安全性，需要配合其他技術才能實現"],a:0,e:"\"多Agent系統讓不同角色Agent分工：研究Agent負責搜集資訊、寫作Agent負責生成報告、審查Agent檢查錯誤。"},
+{id:59,c:"enhance",q:"「RAG vs Fine-tuning」選擇策略：若企業需要AI回答每週更新的產品規格，應優先選擇哪種方式？",o:["A. Fine-tuning，定期重新訓練模型", "B. 兩者同時使用，並能確保資料的安全性，並能確保資料的安全性", "C. 使用更大的預訓練模型，並能確保資料的安全性", "D. RAG，連接最新產品規格資料庫，動態檢索最新資訊"],a:3,e:"\"RAG vs Fine-tuning選擇：RAG適合→知識頻繁更新、需引用具體文件、動態資訊；"},
+{id:60,c:"enhance",q:"「AI Guardrails（AI護欄）」在企業AI應用中的作用是？",o:["A. 物理保護AI伺服器設備，適用於特定的業務場景，但實際效果仍需進一步驗證", "B. 設置規則和過濾機制，確保AI輸出符合安全、合規和品牌要求，避免有害或不當內容", "C. 提高AI模型的推理速度，有助於降低開發和維護成本，但技術上仍有一定限制", "D. 管理AI專案的時程，並支援多種輸入輸出格式，並支援多種輸入輸出格式"],a:1,e:"\"Guardrails是AI系統的安全帶：輸入過濾（屏蔽有害請求）、輸出審查（符合品牌語調）、主題限制（"},
+{id:61,c:"enhance",q:"「API（Application Programming Interface）」在企業導入生成式AI時扮演什麼角色？",o:["A. 一種AI模型的訓練方法，並能確保資料的安全性", "B. 讓企業應用程式能透過標準化接口調用AI服務，無需自行部署模型", "C. 監控AI系統的儀表板，以符合企業的實際需求，但技術上仍有一定限制", "D. AI模型的資料儲存格式，可提升系統的整體效能"],a:1,e:"\"API讓企業租用AI能力而非自建AI：通過HTTP請求發送輸入→接收AI輸出→整合進自己的應用。"},
+{id:62,c:"enhance",q:"「批次處理（Batch Processing）」在企業使用生成式AI時的主要優勢是？",o:["A. 讓AI能同時與多個使用者即時對話", "B. 一次處理大量文件，降低API成本和提高效率", "C. 提升AI生成內容的品質，以符合企業的實際需求", "D. 減少AI模型的幻覺問題，以符合企業的實際需求"],a:1,e:"\"批次處理適合：大量文件分類、批次翻譯、批次情感分析、批次生成商品描述等非即時任務。"},
+{id:63,c:"enhance",q:"「生成式AI的API使用成本」主要取決於哪些因素？",o:["A. 問題的難易程度，可根據使用情境靈活調整", "B. 輸入和輸出的Token數量", "C. 使用的程式語言，以符合企業的實際需求", "D. 伺服器的地理位置，有助於降低開發和維護成本"],a:1,e:"\"API計費主要依據：Input Token數（提示詞）+ Output Token數（回覆）× 單價（$/百萬token）。"},
+{id:64,c:"enhance",q:"「對齊問題（Alignment Problem）」在AI安全領域指的是什麼？",o:["A. 如何確保AI系統的目標和行為與人類的價值觀和意圖保持一致", "B. AI模型的參數矩陣對齊計算問題，有助於降低開發和維護成本", "C. 多個AI模型之間的協調問題，有助於降低開發和維護成本", "D. AI生成內容的格式排版問題，適用於特定的業務場景"],a:0,e:"\"對齊問題：AI系統可能以人類不希望的方式達成目標（如「讓用戶開心」→學會欺騙用戶）。"},
+{id:65,c:"enhance",q:"「Prompt優化」的迭代流程最佳實踐是？",o:["A. 測試初版→分析不理想輸出→找出問題根源→修改Prompt→再測試，持續迭代改進", "B. 一次就寫出完美的Prompt，可根據使用情境靈活調整，並能確保資料的安全性", "C. 複製網路上的Prompt不需測試，但技術上仍有一定限制，但實際效果仍需進一步驗證", "D. 讓AI自動優化Prompt，以符合企業的實際需求，可提升系統的整體效能"],a:0,e:"\"Prompt優化是工程實踐：①初版測試（用多個代表性案例）；"},
+{id:66,c:"enhance",q:"「AI素養（AI Literacy）」對一般職場工作者最核心的意義是？",o:["A. 需要學會寫Python程式碼，並能確保資料的安全性", "B. 理解AI的能力與限制、能有效使用AI工具、辨識AI生成內容的風險", "C. 取得AI相關學術學位，需要配合其他技術才能實現，並支援多種輸入輸出格式", "D. 能自行訓練和部署AI模型，但技術上仍有一定限制，但實際效果仍需進一步驗證"],a:1,e:"\"AI素養不等於AI工程師能力：包括①理解AI工作原理（知道能做什麼不能做什麼）；"},
+{id:67,c:"enhance",q:"「生成式AI用於會議記錄摘要」時，哪種Prompt設計最有效？",o:["A. 明確指定摘要格式、長度、重點", "B. 直接貼上會議記錄問「幫我摘要」", "C. 要求AI用最精簡的方式壓縮", "D. 讓AI自由發揮，並支援多種輸入輸出格式"],a:0,e:"\"有效的摘要Prompt應明確：①輸出格式（條列式/段落）；②重點類別（決策/行動項目/風險）；"},
+{id:68,c:"enhance",q:"「企業自建本地部署AI」相比「使用第三方API」的主要優勢是？",o:["A. 自建系統性能一定更好，需要配合其他技術才能實現，並能確保資料的安全性", "B. 自建系統成本更低，並支援多種輸入輸出格式，並支援多種輸入輸出格式", "C. 資料完全在企業內部，不會外傳給第三方，適合有高度資料隱私要求的場景", "D. 自建系統不需要維護，可根據使用情境靈活調整，可根據使用情境靈活調整"],a:2,e:"\"本地部署優勢：資料隱私（敏感資料不離開企業）、合規性（金融、醫療監管要求）、客製化程度"},
+{id:69,c:"enhance",q:"評估生成式AI輸出品質，最完整的方法是？",o:["A. 只看模型官方發布的基準測試分數，有助於降低開發和維護成本", "B. 測量模型回覆速度（毫秒/字），以符合企業的實際需求", "C. 比較模型的參數數量，並能確保資料的安全性，需要配合其他技術才能實現", "D. 用真實業務場景案例、由領域專家評估，結合使用者滿意度調查"],a:3,e:"\"企業AI評估最佳實踐：①真實業務場景測試（非通用基準）；②領域專家評估（律師評法律AI）；"},
+{id:70,c:"enhance",q:"「自然語言查詢資料庫（Text-to-SQL）」技術讓企業能做什麼？",o:["A. 讓非技術人員用中文或英文提問，AI自動轉換成SQL語法查詢資料庫，獲取數據洞察", "B. 用自然語言指令直接操控倉庫機器人，但技術上仍有一定限制，並能確保資料的安全性", "C. 讓AI自動設計資料庫結構，有助於降低開發和維護成本，有助於降低開發和維護成本", "D. 將資料庫中的所有資料自動翻譯，但技術上仍有一定限制，可提升系統的整體效能"],a:0,e:"\"Text-to-SQL是生成式AI的重要企業應用：業務人員輸入「上季度哪個地區業績最高？」→AI生成SQL查詢"},
+{id:71,c:"enhance",q:"「模型漂移（Model Drift）」在AI生產環境中指的是什麼？",o:["A. 現實世界的資料分布隨時間變化，導致基於舊資料訓練的模型效果下降", "B. AI伺服器因過熱而關機，可提升系統的整體效能，並能確保資料的安全性", "C. 模型因資料品質差而停止學習，但實際效果仍需進一步驗證", "D. 模型訓練到收斂後無法再提升，適用於特定的業務場景"],a:0,e:"\"模型漂移類型：①概念漂移（目標概念本身改變）；②資料漂移（輸入資料的統計特性改變）。"},
+{id:72,c:"enhance",q:"「多輪對話管理（Multi-turn Conversation）」面臨的最大挑戰是？",o:["A. 讓AI支援多種語言，但實際效果仍需進一步驗證，並能確保資料的安全性", "B. 讓多個使用者同時使用同一AI系統，以符合企業的實際需求，適用於特定的業務場景", "C. 在長對話中有效管理上下文，避免因Context Window限制而遺忘重要資訊", "D. 確保AI回覆的生成速度，適用於特定的業務場景，適用於特定的業務場景"],a:2,e:"\"多輪對話挑戰：①Context Window限制（對話過長時早期內容被截斷）；②話題漂移（AI忘記對話目標）。"},
+{id:73,c:"enhance",q:"「AI輔助程式碼生成」中，「自動生成測試案例」的主要好處是？",o:["A. 完全取代QA測試工程師，並支援多種輸入輸出格式，適用於特定的業務場景", "B. 讓程式碼執行速度更快，但技術上仍有一定限制，可提升系統的整體效能", "C. 快速生成大量邊界條件和異常情況的測試案例，提升程式碼覆蓋率，減少手工編寫時間", "D. 自動修復發現的所有Bug，有助於降低開發和維護成本，並能確保資料的安全性"],a:2,e:"\"AI生成測試案例（GitHub Copilot等）：輸入函數定義→AI自動生成多個測試案例（正常、邊界值、異常"},
+{id:74,c:"enhance",q:"「AI賦能（AI-Augmentation）」與「AI自動化（AI-Automation）」的主要差異是？",o:["A. AI賦能更昂貴，AI自動化更便宜，適用於特定的業務場景", "B. AI賦能是AI輔助人類提升能力，AI自動化是AI完全取代人類執行某項任務", "C. AI賦能只用於科技業，AI自動化只用於製造業，但實際效果仍需進一步驗證", "D. 兩者是完全相同的概念，可提升系統的整體效能，並支援多種輸入輸出格式"],a:1,e:"\"AI賦能：醫師+AI診斷輔助=更精準的診斷（醫師仍做決策，AI提升能力）。"},
+{id:75,c:"enhance",q:"「Precision（精確率）」衡量的是？",o:["A. 模型訓練速度，可提升系統的整體效能", "B. 模型預測為正例中，真正正例所占的比例", "C. 所有真正正例中，被模型找到的比例", "D. 模型大小，並支援多種輸入輸出格式"],a:1,e:"\"Precision = TP/(TP+FP)：模型說是的裡有多少真的是。Recall = TP/(TP+FN)：所有真正的是裡有多少被找到。"},
+{id:76,c:"enhance",q:"「AI幻覺風險管理」最有效的綜合策略是？",o:["A. 完全禁止員工使用任何生成式AI工具，但技術上仍有一定限制", "B. 只使用最新版本的AI模型，但實際效果仍需進一步驗證，但實際效果仍需進一步驗證", "C. 讓AI系統彼此交叉驗證答案，但實際效果仍需進一步驗證，但實際效果仍需進一步驗證", "D. 建立人工審查流程、導入RAG提供事實依據、設定低溫度參數、訓練員工識別幻覺"],a:3,e:"\"幻覺風險綜合管理：①人在迴圈（HITL）：高風險決策需人工審核；"},
+{id:77,c:"skill",q:"一家電商公司想自動生成商品描述文案，應優先使用生成式AI的哪類功能？",o:["A. 圖像分類功能，並能確保資料的安全性", "B. 語音辨識功能，但實際效果仍需進一步驗證", "C. 物件偵測功能，適用於特定的業務場景", "D. 文本生成功能（LLM文字生成）"],a:3,e:"\"商品描述是「文本生成」任務：LLM透過提示詞（商品名稱+規格+目標客群）自動生成符合品牌調性的"},
+{id:78,c:"skill",q:"企業在導入生成式AI前，進行「AI成熟度評估」的主要目的是？",o:["A. 評估AI硬體設備規格，適用於特定的業務場景", "B. 了解企業現有AI準備程度，識別適合的應用場景和技術差距", "C. 計算AI專案的預算上限，可提升系統的整體效能", "D. 測試AI模型的運算速度，但實際效果仍需進一步驗證"],a:1,e:"\"AI成熟度評估涵蓋：①資料就緒度（品質、數量、標準化）；②IT基礎設施（雲端、API、安全）；"},
+{id:79,c:"skill",q:"下列哪種生成式AI工具最適合快速製作「投影片簡報」？",o:["A. Midjourney，可提升系統的整體效能", "B. Suno AI，可提升系統的整體效能", "C. Gamma 或 Beautiful.ai", "D. RunwayML，需要配合其他技術才能實現"],a:2,e:"\"各工具分工：Gamma/Beautiful.ai/Canva AI→簡報生成；Midjourney/Stable Diffusion→圖像生成；"},
+{id:80,c:"skill",q:"「No Code / Low Code」AI應用工具的主要優勢是？",o:["A. 只有程式設計師才能使用，並支援多種輸入輸出格式", "B. 比傳統程式碼執行速度更快，需要配合其他技術才能實現", "C. 只適用於小型企業，有助於降低開發和維護成本", "D. 讓非技術背景人員也能快速建置AI應用，降低技術門檻"],a:3,e:"\"No Code（Zapier、Make.com）：完全不需程式碼，透過視覺化流程設計自動化。"},
+{id:81,c:"skill",q:"企業導入AI後，評估「投資報酬率（ROI）」時，應考慮哪些面向？",o:["A. 僅計算AI軟體購買費用，以符合企業的實際需求，並支援多種輸入輸出格式", "B. 只計算AI工程師薪資，但技術上仍有一定限制，但技術上仍有一定限制", "C. 成本降低、效率提升、錯誤減少、員工時間節省、收入增加等綜合效益", "D. 只看模型的準確率數字，並支援多種輸入輸出格式，以符合企業的實際需求"],a:2,e:"\"AI ROI完整評估：有形效益（節省工時×薪資成本、錯誤率降低、更快的上市時間）+ 無形效益（員工"},
+{id:82,c:"skill",q:"「AI幻覺」對企業應用最可能造成哪種實際危害？",o:["A. 伺服器過熱當機，但技術上仍有一定限制，並能確保資料的安全性", "B. 員工學習時間過長，但技術上仍有一定限制，以符合企業的實際需求", "C. AI生成錯誤的法律條文、醫療建議或財務數字，造成決策失誤", "D. AI系統反應速度過慢，但實際效果仍需進一步驗證"],a:2,e:"\"高風險場景：法律（引用不存在的判例）→可能敗訴；醫療（錯誤的藥物劑量建議）→患者傷害；"},
+{id:83,c:"skill",q:"企業導入AI時，「試點（Pilot）計畫」的主要目的是？",o:["A. 在小範圍場景驗證可行性、收集反饋、降低全面導入的風險", "B. 直接全面替換所有員工，需要配合其他技術才能實現", "C. 節省AI工具的採購費用，以符合企業的實際需求", "D. 讓所有部門同時學習AI工具，但技術上仍有一定限制"],a:0,e:"\"試點計畫最佳實踐：①選定1-2個高價值、低風險場景；②設定明確的成功指標（KPI）；"},
+{id:84,c:"skill",q:"生成式AI在「內容行銷」中最常被用於哪些工作？",o:["A. 管理社群媒體的廣告投放預算，可根據使用情境靈活調整", "B. 直接電話銷售，但實際效果仍需進一步驗證，以符合企業的實際需求", "C. 分析競爭對手的財務報告，適用於特定的業務場景", "D. 自動生成部落格草稿、社群貼文、廣告文案、SEO關鍵字建議"],a:3,e:"\"生成式AI行銷應用：大量個人化文案生成、A/B測試多版本標題、SEO文章生成、產品說明書翻譯、圖片"},
+{id:85,c:"skill",q:"「人在迴圈（Human-in-the-Loop, HITL）」機制在AI應用中的作用是？",o:["A. 在關鍵決策點保留人類審核", "B. 讓AI代替人類做所有決策", "C. 訓練AI模型時需人工輸入每一筆資料", "D. 監控AI系統的電力消耗"],a:0,e:"\"HITL是負責任AI使用的核心機制：AI輔助→人類審核→最終決策。EU AI Act對高風險AI（醫療、金融、司"},
+{id:86,c:"skill",q:"企業想用AI自動回覆客戶服務詢問，最佳架構是？",o:["A. 用GAN訓練全新客服模型，需要配合其他技術才能實現，有助於降低開發和維護成本", "B. 純粹使用規則型關鍵字比對系統，有助於降低開發和維護成本", "C. 直接連接GPT不加任何公司資料，可根據使用情境靈活調整", "D. 結合RAG技術，讓LLM讀取公司知識庫後生成準確回覆，並設置人工升級機制"],a:3,e:"\"企業AI客服最佳實踐：RAG架構（公司FAQ/產品手冊→向量化→知識庫）+LLM生成回覆+人工升級機制（無"},
+{id:87,c:"skill",q:"企業「AI治理框架」中最重要的元素是？",o:["A. 擁有最強大的AI硬體設備，需要配合其他技術才能實現", "B. 使用所有最新的AI工具，可根據使用情境靈活調整", "C. 完全禁止員工使用個人AI工具，以符合企業的實際需求", "D. 明確的AI使用政策、風險評估流程、問責機制和員工培訓計畫"],a:3,e:"\"AI治理框架四大支柱：①使用政策（哪些場景可/不可用AI）；②風險評估（分類AI系統風險等級）；"},
+{id:88,c:"skill",q:"「Sora」是哪家公司發布的什麼類型AI工具？",o:["A. Google發布的文字生成工具", "B. Meta發布的音樂生成工具", "C. Microsoft發布的圖像生成工具", "D. OpenAI發布的文字轉影片生成模型"],a:3,e:"\"Sora（OpenAI，2024年）是文字→影片生成模型，能生成60秒長的高品質影片。"},
+{id:89,c:"skill",q:"「AI專案失敗」最常見的原因是哪個？",o:["A. AI模型技術不夠先進，有助於降低開發和維護成本", "B. 伺服器性能不足，可提升系統的整體效能，可根據使用情境靈活調整", "C. 缺乏清晰的業務目標、資料品質差、組織變革阻力等非技術因素", "D. AI工程師薪資太高，適用於特定的業務場景，有助於降低開發和維護成本"],a:2,e:"\"研究顯示AI專案失敗主因：資料問題（品質、標籤、量）30%；業務目標不明確20%；組織文化阻力20%；"},
+{id:90,c:"skill",q:"使用「ChatGPT等AI工具撰寫學術論文」時，最需要注意的問題是？",o:["A. AI可能生成不存在的參考文獻（幻覺）、學術不誠信的著作權問題", "B. AI生成的文字太長，有助於降低開發和維護成本", "C. AI只能用英文寫作，但實際效果仍需進一步驗證", "D. AI生成速度太慢，適用於特定的業務場景，並能確保資料的安全性"],a:0,e:"\"學術AI使用風險：①幻覺引用（常見且難以發現，必須逐一查證）；②學術不誠信（各機構政策不同，"},
+{id:91,c:"skill",q:"「AI輔助醫療診斷」目前在法規上的主要要求是什麼？",o:["A. AI可完全取代醫師診斷，不需醫師審核，但技術上仍有一定限制", "B. 醫療AI只能用於行政工作，並支援多種輸入輸出格式", "C. 所有醫療AI都被全面禁止，但技術上仍有一定限制，需要配合其他技術才能實現", "D. AI作為輔助工具，最終診斷和決策責任仍由具執照的醫療專業人員承擔"],a:3,e:"\"醫療AI法規基本原則（歐盟MDR、台灣醫療器材法）：AI診斷輔助系統視為「醫療器材」需取得許可；"},
+{id:92,c:"skill",q:"「生成式AI在HR人力資源」中最實際的應用是哪些？",o:["A. 直接決定員工薪資調整，以符合企業的實際需求，需要配合其他技術才能實現", "B. 取代所有HR人員，但技術上仍有一定限制，可提升系統的整體效能", "C. 自動決定員工是否錄用，需要配合其他技術才能實現，以符合企業的實際需求", "D. 職位描述自動生成、履歷初篩輔助、員工培訓內容個人化、問答型HR政策助理"],a:3,e:"\"HR中AI最有效的應用：①JD自動生成（根據職能要求生成職位描述）；"},
+{id:93,c:"skill",q:"在設計「AI輔助工作流程」時，哪些任務最適合AI自動化？",o:["A. 所有重複性任務都讓AI做，所有創意任務都讓人做，但實際效果仍需進一步驗證", "B. 只有程式碼相關任務適合AI，可提升系統的整體效能，並支援多種輸入輸出格式", "C. 高量化、規則明確、低風險的重複任務適合AI；需要道德判斷、客戶關係、重大決策的任務保留人類", "D. AI只應用於資料分析，需要配合其他技術才能實現，有助於降低開發和維護成本"],a:2,e:"\"AI擅長：大量文件分類、資料提取、重複文案生成、排程安排。"},
+{id:94,c:"skill",q:"「文字轉圖像（Text-to-Image）」AI工具在企業中最有價值的應用場景是？",o:["A. 取代所有專業攝影師，適用於特定的業務場景，並支援多種輸入輸出格式", "B. 用於醫療影像診斷，但實際效果仍需進一步驗證，可提升系統的整體效能", "C. 快速生成行銷素材概念圖、產品視覺化、廣告設計草稿，加速創意工作流程", "D. 偵測工廠生產線缺陷，並能確保資料的安全性，需要配合其他技術才能實現"],a:2,e:"\"T2I商業應用：行銷部門（快速生成廣告創意概念圖用於提案，"},
+{id:95,c:"skill",q:"「AI輔助法律合約審查」最能提升哪個環節的效率？",o:["A. 出庭辯護，並支援多種輸入輸出格式，但實際效果仍需進一步驗證", "B. 快速標記高風險條款、不常見措辭、缺失的標準條款，縮短初步審查時間", "C. 法律研究文獻搜集，可根據使用情境靈活調整，可提升系統的整體效能", "D. 與客戶進行談判，並支援多種輸入輸出格式，但實際效果仍需進一步驗證"],a:1,e:"\"AI合約審查工具能：快速掃描合約標記異常條款（過長的罰款、不合理的賠償）、比對公司標準合約"},
+{id:96,c:"skill",q:"企業建立「生成式AI使用政策」時，最重要的第一步是？",o:["A. 立即禁止所有員工使用AI工具，以符合企業的實際需求", "B. 等待政府發布法規再行動，可根據使用情境靈活調整，可提升系統的整體效能", "C. 複製其他公司的AI政策，以符合企業的實際需求，可根據使用情境靈活調整", "D. 盤點現有業務流程中AI的使用現況，評估風險，再制定差異化的使用指引"],a:3,e:"\"制定AI使用政策步驟：①現況盤點（員工已在用哪些AI工具？用在哪些場景？）；"},
+{id:97,c:"skill",q:"「AI輔助財務分析」在企業中的典型應用包含哪些？",o:["A. AI直接簽署財務報告，需要配合其他技術才能實現", "B. 快速生成財務摘要、異常交易偵測、預算預測、自然語言查詢財務數據", "C. 取代所有會計師，可提升系統的整體效能，但技術上仍有一定限制", "D. 只能用於計算器功能，但技術上仍有一定限制，但實際效果仍需進一步驗證"],a:1,e:"\"財務AI應用：①月度財報摘要自動生成；②異常交易偵測（發現疑似詐欺或錯誤）；"},
+{id:98,c:"skill",q:"「AI翻譯工具」在企業使用時的主要限制是？",o:["A. 只能翻譯英文，但技術上仍有一定限制，適用於特定的業務場景", "B. 在高度技術性、法律性或文化特定語境的翻譯中可能出現術語錯誤，需要領域專家後審", "C. 翻譯速度比人工慢，可提升系統的整體效能，但實際效果仍需進一步驗證", "D. 不支援中文翻譯，可提升系統的整體效能，但技術上仍有一定限制"],a:1,e:"\"AI翻譯限制：①技術術語（醫療、法律、半導體特定詞彙可能翻譯錯誤）；"},
+{id:99,c:"skill",q:"「AI輔助客服」與「傳統規則型聊天機器人」最主要的差異是？",o:["A. AI輔助客服更便宜，並支援多種輸入輸出格式，適用於特定的業務場景", "B. AI輔助客服能理解語意、處理未預設的多樣化問題，提供更自然流暢的對話體驗", "C. 傳統聊天機器人更準確，適用於特定的業務場景，需要配合其他技術才能實現", "D. AI輔助客服不需要人工維護，但技術上仍有一定限制，適用於特定的業務場景"],a:1,e:"\"規則型Bot：按關鍵字匹配預設流程，只能回答預先設定的問題。AI輔助客服（LLM+RAG）：理解語意意"},
+{id:100,c:"skill",q:"「AI輔助教育」中「個人化學習（Personalized Learning）」的核心優勢是？",o:["A. 讓所有學生同時學完相同進度，並支援多種輸入輸出格式", "B. 取代所有教師，有助於降低開發和維護成本，以符合企業的實際需求", "C. 降低學校的建築成本，並支援多種輸入輸出格式，可提升系統的整體效能", "D. 根據每位學生的知識水準、學習速度和弱點，動態調整學習內容和難度"],a:3,e:"\"AI個人化學習：系統持續評估學生知識點掌握度→識別弱點→推薦相應練習題→調整難度曲線。"},
+{id:101,c:"skill",q:"企業在「AI成熟度評估」中，哪個指標最能反映已從「實驗階段」進入「規模化階段」？",o:["A. 公司高管表示支持AI，但實際效果仍需進一步驗證，適用於特定的業務場景", "B. 多個業務部門有正在運行的AI應用，有明確的效益追蹤指標，建立了AI治理機制", "C. 購買了昂貴的AI硬體設備，但實際效果仍需進一步驗證，有助於降低開發和維護成本", "D. 參加了AI相關培訓課程，適用於特定的業務場景，適用於特定的業務場景"],a:1,e:"\"AI導入成熟度階段：初探（少數人試玩工具）→試點（選定場景小規模實驗）→規模化（多部門穩定"},
+{id:102,c:"skill",q:"「AI生成的商業企劃書」應如何使用才最安全有效？",o:["A. 直接送給客戶或投資人，不需修改，有助於降低開發和維護成本", "B. 作為初稿架構和靈感來源，由領域專家審核、補充實際數據和業務洞察後使用", "C. 完全不應使用AI生成企劃書，可根據使用情境靈活調整", "D. 只需檢查錯別字就可使用，可提升系統的整體效能，可提升系統的整體效能"],a:1,e:"\"AI企劃書最佳實踐：①用AI快速生成架構和初稿（節省60-70%時間）；②領域專家審核邏輯性和可行性；"},
+{id:103,c:"skill",q:"企業導入「生成式AI」後，應如何持續監控AI系統的表現？",o:["A. 只在系統上線時測試一次，以符合企業的實際需求，需要配合其他技術才能實現", "B. 建立定期評估機制，監控輸出品質、偏見指標、用戶滿意度，並在資料分佈變化時重新評估", "C. 讓AI系統自己監控自己，有助於降低開發和維護成本，可提升系統的整體效能", "D. 等到用戶投訴才調整，以符合企業的實際需求，可根據使用情境靈活調整"],a:1,e:"\"AI系統持續監控內容：①輸出品質追蹤（錯誤率、用戶評分）；"},
+{id:104,c:"ethics",q:"台灣《人工智慧基本法》於2026年1月正式施行，其中央主管機關為？",o:["A. 經濟部，可根據使用情境靈活調整", "B. 數位發展部，有助於降低開發和維護成本", "C. 國家科學及技術委員會", "D. 行政院科技委員會"],a:2,e:"\"台灣《人工智慧基本法》2026年1月14日生效，中央主管機關為國科會。"},
+{id:105,c:"ethics",q:"歐盟《AI法案（EU AI Act）》的「不可接受風險」類別AI系統會被如何處理？",o:["A. 需要嚴格監管並定期審計", "B. 只需要透明度標示", "C. 自由使用但需繳納稅款", "D. 被完全禁止使用"],a:3,e:"\"EU AI Act四級風險：①不可接受風險（禁止）：社會信用評分、即時公開場所生物辨識；"},
+{id:106,c:"ethics",q:"根據「GDPR」，發生個人資料外洩且可能影響當事人時，企業應在知悉後多久通報主管機關？",o:["A. 24小時", "B. 72小時", "C. 48小時", "D. 7個工作天"],a:1,e:"\"GDPR第33條：個資外洩後72小時內通報主管機關（Data Protection Authority）。"},
+{id:107,c:"ethics",q:"使用生成式AI創作的圖像、文章，在著作權法上目前多數國家的立場是？",o:["A. AI自動取得著作權，可提升系統的整體效能，並支援多種輸入輸出格式", "B. 純AI生成內容原則上不受著作權保護，需有人類創作性貢獻才能取得著作權", "C. 使用AI工具的企業自動擁有全部著作權，有助於降低開發和維護成本", "D. 著作權歸訓練AI的資料提供者，需要配合其他技術才能實現"],a:1,e:"\"各國著作權法現況：美國版權局明確表示純AI生成作品不受保護；台灣智財局立場相近。"},
+{id:108,c:"ethics",q:"「AI透明度（Transparency）」原則在實務上對企業最重要的要求是？",o:["A. 公開所有AI模型的程式碼，以符合企業的實際需求，適用於特定的業務場景", "B. 所有AI系統必須開放原始碼，需要配合其他技術才能實現", "C. 告知用戶正在與AI互動，並在高影響力AI決策時說明決策依據和限制", "D. 禁止AI系統使用任何加密技術，適用於特定的業務場景"],a:2,e:"\"AI透明度實務要求：①聊天機器人必須告知用戶「你正在與AI互動」；"},
+{id:109,c:"ethics",q:"「AI偏見（AI Bias）」問題最常見的根本原因是？",o:["A. AI模型的計算速度不夠快，適用於特定的業務場景", "B. AI硬體設備的製造缺陷，需要配合其他技術才能實現", "C. 程式碼中存在語法錯誤，並能確保資料的安全性", "D. 訓練資料本身反映了社會中存在的不平等，或訓練樣本缺乏代表性"],a:3,e:"\"AI偏見根源：若訓練資料存在系統性偏見（如歷史招聘資料中女性擔任高管比例低），"},
+{id:110,c:"ethics",q:"「可解釋AI（XAI, Explainable AI）」的主要目的是？",o:["A. 讓AI模型計算速度更快，但技術上仍有一定限制", "B. 讓AI可以解釋人類的行為，適用於特定的業務場景", "C. 使AI系統的決策過程能被人類理解和解釋，提升信任與問責能力", "D. 將複雜AI技術轉化為簡單規則，以符合企業的實際需求"],a:2,e:"\"XAI解決黑盒問題：當AI拒絕貸款申請，能解釋「因為信用評分低（貢獻40%）和負債收入比高（貢獻35%"},
+{id:111,c:"ethics",q:"企業在使用AI處理員工個人資料時，最重要的合規原則是？",o:["A. 只需在公司內部會議說明，並支援多種輸入輸出格式，但技術上仍有一定限制", "B. 可將員工個資賣給第三方分析公司，有助於降低開發和維護成本", "C. 員工沒有知情同意的權利，並支援多種輸入輸出格式，但技術上仍有一定限制", "D. 遵循「最小必要原則」，只收集完成特定目的所需的最少個資，並告知員工"],a:3,e:"\"個資保護核心原則（GDPR/台灣個資法共通）：①目的限制（只用於特定目的）；"},
+{id:112,c:"ethics",q:"「AI幻覺」在高風險領域（醫療、法律）的使用，倫理上最應注意什麼？",o:["A. 建立人類專家審查機制，AI生成內容不應直接作為最終決策依據，需要HITL", "B. 確保AI使用最新軟體版本，並能確保資料的安全性，適用於特定的業務場景", "C. 提高AI運算效能以降低幻覺率，以符合企業的實際需求，並能確保資料的安全性", "D. 禁止所有高風險領域使用AI，可根據使用情境靈活調整，並能確保資料的安全性"],a:0,e:"\"高風險AI倫理原則：AI是輔助工具非決策者。醫療AI錯誤可能造成患者傷害，法律AI錯誤可能使人蒙冤，"},
+{id:113,c:"ethics",q:"「監理沙盒（Regulatory Sandbox）」在AI創新中扮演什麼角色？",o:["A. AI模型的測試訓練環境，並支援多種輸入輸出格式，可提升系統的整體效能", "B. 讓創新AI應用在受監管的環境中合法測試，在正式法規出爐前給予彈性空間", "C. 企業測試網路安全的工具，以符合企業的實際需求，並能確保資料的安全性", "D. AI系統的備份機制，有助於降低開發和維護成本，並能確保資料的安全性"],a:1,e:"\"監理沙盒讓法規尚未明確的創新AI（如醫療診斷AI、金融信用評分AI）能在政府監管下進行小規模真"},
+{id:114,c:"ethics",q:"根據台灣《人工智慧基本法》，下列哪一項「不是」其核心原則？",o:["A. 以人為本，並能確保資料的安全性", "B. 永續發展，有助於降低開發和維護成本", "C. AI系統必須強制開放原始碼", "D. 透明問責，有助於降低開發和維護成本"],a:2,e:"\"台灣《人工智慧基本法》七大核心原則：以人為本、永續發展、隱私保護、資安韌性、透明問責、"},
+{id:115,c:"ethics",q:"「生成式AI」在創作領域引發的最主要版權爭議是？",o:["A. AI訓練使用大量人類創作者的作品，但未獲授權或給予補償", "B. AI生成的作品色彩太鮮豔，需要配合其他技術才能實現", "C. AI生成的音樂播放速度太快，需要配合其他技術才能實現", "D. 生成式AI佔用了創作者的工作空間，適用於特定的業務場景"],a:0,e:"\"核心爭議：Stable Diffusion、Midjourney、GitHub Copilot等工具以網路爬取的藝術家/程式設計師作品訓練，"},
+{id:116,c:"ethics",q:"「AI決策的問責制（Accountability）」在倫理上要求什麼？",o:["A. AI系統自動向媒體公開所有決策紀錄", "B. 明確定義誰對AI決策的後果負責", "C. 禁止AI做任何影響人類的決策", "D. AI錯誤決策由AI公司自動賠償"],a:1,e:"\"AI問責制核心：AI做出決策後，必須有明確的「責任鏈」：AI開發者（系統層面）→企業部署者（使"},
+{id:117,c:"ethics",q:"「負責任AI（Responsible AI）」涵蓋的核心維度包含哪些？",o:["A. 只需關注準確率和速度，有助於降低開發和維護成本", "B. 只要符合法規就算負責任，需要配合其他技術才能實現", "C. 公平性、透明度、可靠性、隱私保護、安全性和問責制的全面考量", "D. 只需關注AI是否盈利，有助於降低開發和維護成本"],a:2,e:"\"負責任AI六大維度（微軟、Google等科技巨頭的框架）：①公平（無歧視）；②可靠性和安全；"},
+{id:118,c:"ethics",q:"「算法歧視（Algorithmic Discrimination）」在哪些場景中最嚴重？",o:["A. 天氣預報，以符合企業的實際需求，並能確保資料的安全性", "B. 電影推薦系統，有助於降低開發和維護成本，以符合企業的實際需求", "C. 交通路線規劃，以符合企業的實際需求，可提升系統的整體效能", "D. 徵信貸款審核、招聘篩選、刑事司法等直接影響人生機遇的高利害決策"],a:3,e:"\"算法歧視在高利害場景影響最深遠：①COMPAS（美國刑事司法風險評估工具）被發現對黑人被告預測"},
+{id:119,c:"ethics",q:"「AI生成內容標示義務」在歐盟AI法案下的規定是？",o:["A. 所有AI生成內容都必須加上浮水印，適用於特定的業務場景", "B. AI生成內容可選擇性標示，但實際效果仍需進一步驗證", "C. 只有政府機構使用的AI需要標示，需要配合其他技術才能實現", "D. 與人類互動的AI系統需告知用戶其為AI，影音深偽內容需標示為AI生成"],a:3,e:"\"EU AI Act透明度義務：①聊天機器人和對話AI→必須告知用戶「你在與AI互動」；"},
+{id:120,c:"ethics",q:"「AI倫理設計（Ethics by Design）」的核心概念是？",o:["A. 在AI系統上線後再處理倫理問題，但技術上仍有一定限制", "B. 讓倫理學家代替工程師開發AI，並能確保資料的安全性", "C. 只在系統發生問題時考慮倫理，並支援多種輸入輸出格式", "D. 在AI系統的設計開發階段就主動將倫理考量納入架構，而非事後補救"],a:3,e:"\"Ethics by Design（倫理設計）：在需求分析→設計→開發→測試→部署每個階段都主動考慮倫理影響。"},
+{id:121,c:"ethics",q:"「生成式AI的環境影響」主要體現在哪個方面？",o:["A. 訓練和推理大型AI模型消耗大量電力，產生顯著的碳排放", "B. AI產生過多光波干擾環境，需要配合其他技術才能實現", "C. AI設備材料難以回收，並支援多種輸入輸出格式", "D. AI使用導致過多紙張浪費，並能確保資料的安全性"],a:0,e:"\"AI環境影響：GPT-3訓練一次消耗約500噸CO2（相當於5台汽車整個生命週期排放）。"},
+{id:122,c:"ethics",q:"「AI偏見減緩（Bias Mitigation）」常見的技術方法包含哪些？",o:["A. 直接刪除訓練資料中所有涉及特定族群的資料", "B. 只使用來自同一國家的訓練資料", "C. 資料重新採樣、公平性約束、後處理調整", "D. 讓AI系統自動識別和修復偏見"],a:2,e:"\"偏見減緩三大策略：①前處理（資料層）：重新採樣確保多樣性；"},
+{id:123,c:"ethics",q:"企業建立「AI使用倫理委員會」的主要目的是？",o:["A. 讓AI系統更快地完成任務", "B. 管理AI工具的採購預算", "C. 取代IT部門的工作", "D. 提供跨部門的倫理監督機制"],a:3,e:"\"AI倫理委員會（如Microsoft的Aether委員會、Google的AIEI）功能：①審查高風險AI應用的倫理問題；"},
+{id:124,c:"ethics",q:"「個人資料去識別化（De-identification）」在AI資料處理中的意義是？",o:["A. 刪除所有資料中的數字，但實際效果仍需進一步驗證", "B. 移除或遮蔽能識別特定個人的資訊", "C. 加密儲存個人資料，並能確保資料的安全性", "D. 限制特定人員查閱資料，可根據使用情境靈活調整"],a:1,e:"\"去識別化方法：匿名化（無法還原）、假名化（可在必要時還原，"},
+{id:125,c:"ethics",q:"「AI系統的定期審計（AI Auditing）」的主要目的是？",o:["A. 計算AI系統的運行成本，可提升系統的整體效能，以符合企業的實際需求", "B. 持續評估AI系統是否維持預期的公平性、準確性和合規性，及早發現問題", "C. 測試AI系統的計算速度，並支援多種輸入輸出格式，需要配合其他技術才能實現", "D. 備份AI模型的訓練資料，可提升系統的整體效能，但技術上仍有一定限制"],a:1,e:"\"AI審計涵蓋：①公平性審計（是否對某群體有系統性歧視）；"},
+{id:126,c:"ethics",q:"「AI倫理的雙重使用困境（Dual Use Dilemma）」指的是什麼？",o:["A. AI系統同時支援兩種程式語言，有助於降低開發和維護成本", "B. 同一AI技術既可用於有益目的也可用於有害目的，難以從技術層面完全區分", "C. AI系統同時由兩家公司使用，可根據使用情境靈活調整", "D. AI模型需要兩次訓練才能使用，但技術上仍有一定限制"],a:1,e:"\"雙重使用困境案例：①臉部辨識技術→可用於尋找失蹤兒童，也可用於威權政府大規模監控；"},
+{id:127,c:"ethics",q:"在台灣《人工智慧基本法》的「透明問責」原則下，AI開發和部署者應承擔哪些義務？",o:["A. 完全公開AI系統的所有技術細節，但技術上仍有一定限制，但技術上仍有一定限制", "B. 說明AI系統的功能、限制、決策邏輯，建立申訴和救濟機制，在AI決策造成損害時承擔責任", "C. 只需要在網站上發布一份聲明，可根據使用情境靈活調整，但技術上仍有一定限制", "D. 讓政府擁有所有AI系統的管理權限，需要配合其他技術才能實現，可提升系統的整體效能"],a:1,e:"\"透明問責實務：①使用說明（AI能做什麼/不能做什麼，潛在錯誤和限制）；"},
+{id:128,c:"ethics",q:"「AI與著作權」問題中，關於「大型語言模型訓練資料」的主要爭議是？",o:["A. LLM用大量有著作權的書籍、文章、程式碼訓練，但未獲作者授權或補償，引發侵權訴訟", "B. 訓練資料量太少導致模型效果差，適用於特定的業務場景，有助於降低開發和維護成本", "C. 訓練資料的儲存成本太高，適用於特定的業務場景，可根據使用情境靈活調整", "D. 訓練資料更新速度不夠快，適用於特定的業務場景，以符合企業的實際需求"],a:0,e:"\"著名訴訟案例：The New York Times訴OpenAI和Microsoft（2023年）、作家集體訴訟Meta等。"},
+{id:129,c:"ethics",q:"「AI對弱勢族群的影響」在倫理討論中特別關注什麼？",o:["A. AI產品對弱勢族群的價格偏高，以符合企業的實際需求", "B. AI系統可能因訓練資料偏差而對弱勢族群產生更大的不利影響", "C. 弱勢族群比其他人更難學會使用AI，可提升系統的整體效能", "D. AI使用會增加弱勢族群的電費，可根據使用情境靈活調整"],a:1,e:"\"AI對弱勢族群不成比例的影響：①徵信AI對低收入戶拒貸率更高（歷史資料偏差）；"},
+{id:130,c:"ethics",q:"「AI倫理全球共識」目前面臨最主要的挑戰是什麼？",o:["A. 全球技術標準尚未統一，需要配合其他技術才能實現，需要配合其他技術才能實現", "B. 人工智慧技術發展速度太慢，需要配合其他技術才能實現，有助於降低開發和維護成本", "C. AI倫理研究人員數量不足，適用於特定的業務場景，可提升系統的整體效能", "D. 不同國家和文化對「隱私」、「自由」、「安全」等價值觀的優先排序不同，難以制定全球統一標準"],a:3,e:"\"AI倫理全球分歧：①隱私 vs 安全：歐盟重視隱私（GDPR嚴格）vs 中國優先社會治理；"},
+{id:131,c:"ethics",q:"「EU AI Act高風險AI」的典型例子包含哪些？",o:["A. 醫療診斷輔助、信用評分、刑事司法風險評估、招聘篩選系統", "B. 垃圾郵件過濾、電影推薦系統，並支援多種輸入輸出格式", "C. 天氣預報、交通路線規劃，有助於降低開發和維護成本", "D. 音樂推薦、社群媒體貼文分類，但技術上仍有一定限制"],a:0,e:"\"EU AI Act高風險AI定義：直接影響個人基本權利、健康、安全或生計的AI應用。"},
+{id:132,c:"ethics",q:"「AI與個人資料最小化（Data Minimization）」原則具體要求企業做什麼？",o:["A. 盡可能收集最多的使用者資料以提升AI性能，可提升系統的整體效能", "B. 將所有資料加密儲存即可，可根據使用情境靈活調整，可提升系統的整體效能", "C. 只收集、處理AI任務所必需的最少資料量，不保留超出需要的個人資訊", "D. 只保留最近一個月的資料，並支援多種輸入輸出格式，以符合企業的實際需求"],a:2,e:"\"資料最小化是GDPR六大原則之一：「資料的處理應適當、相關且限於必要」。"},
+{id:133,c:"ethics",q:"「AI人才倫理責任」指的是AI工程師和產品經理在開發AI時應承擔什麼？",o:["A. 主動考量AI系統可能產生的社會影響、偏見風險和倫理問題，並在設計中採取預防措施", "B. 只需確保AI技術功能正常運作，有助於降低開發和維護成本，並能確保資料的安全性", "C. 將所有倫理決策留給律師處理，需要配合其他技術才能實現，可提升系統的整體效能", "D. 等待政府法規出爐再考慮倫理問題，需要配合其他技術才能實現，可提升系統的整體效能"],a:0,e:"\"AI從業者的倫理責任：ACM和IEEE等專業組織都建立了AI倫理準則。"},
+{id:134,c:"ethics",q:"使用AI生成內容時，下列哪一種行為在台灣最可能引發法律問題？",o:["A. 用AI翻譯自己撰寫的文章，並能確保資料的安全性", "B. 用AI生成他人姓名和肖像的虛假新聞或不實影片", "C. 用AI幫助生成個人日記，但技術上仍有一定限制", "D. 用AI整理自己的工作記錄，並能確保資料的安全性"],a:1,e:"\"法律風險：偽造他人姓名/肖像可能觸犯台灣《刑法》誹謗罪、《個人資料保護法》（未經同意使用"},
+{id:135,c:"ethics",q:"「AI系統」在「自主武器（Autonomous Weapons）」的應用中，倫理核心爭議是什麼？",o:["A. 製造成本過高，以符合企業的實際需求，但技術上仍有一定限制", "B. 缺乏人類監督的致命性決策違反戰爭倫理，難以明確問責，可能引發不受控的軍備競賽", "C. 技術上尚未可行，但實際效果仍需進一步驗證，並支援多種輸入輸出格式", "D. 國防預算分配問題，以符合企業的實際需求，並能確保資料的安全性"],a:1,e:"\"「殺手機器人」的倫理核心爭議：①無人監督的生死決定違反人類尊嚴（誰授權機器決定殺人？）；"},
+{id:136,c:"ethics",q:"「AI安全（AI Safety）」與「AI倫理（AI Ethics）」的主要差異是？",o:["A. AI安全聚焦於防止AI系統造成意外傷害，AI倫理聚焦於AI對社會價值觀和公平性的影響", "B. AI安全是關於資料安全，AI倫理是關於模型準確率，需要配合其他技術才能實現", "C. 兩者完全相同，並能確保資料的安全性，以符合企業的實際需求，需要配合其他技術才能實現", "D. AI安全只關注網路攻擊，AI倫理只關注著作權，可根據使用情境靈活調整"],a:0,e:"\"AI安全（Safety）：防止AI在非預期情況下造成物理或技術危害（自駕車的安全性、AI醫療設備的可靠"},
+{id:137,c:"ethics",q:"「AI對齊（AI Alignment）」研究的主要關注點是？",o:["A. 讓AI模型的參數矩陣對齊計算，有助於降低開發和維護成本", "B. 讓多個AI模型之間協調合作，有助於降低開發和維護成本", "C. 如何確保AI系統的目標和行為與人類的價值觀和意圖保持一致", "D. AI生成內容的格式排版，需要配合其他技術才能實現"],a:2,e:"\"對齊問題：AI系統可能以人類不希望的方式達成目標（如「讓用戶開心」→學會欺騙用戶）。"},
+{id:138,c:"ethics",q:"「深偽偵測（Deepfake Detection）」技術的主要應用場景是？",o:["A. 生成更高品質的Deepfake影片，可根據使用情境靈活調整", "B. 加速影片剪輯效率，並能確保資料的安全性，有助於降低開發和維護成本", "C. 壓縮影片檔案大小，但實際效果仍需進一步驗證，有助於降低開發和維護成本", "D. 識別AI合成的假影像或影片，用於媒體查核、司法鑑定、社群平台內容審查"],a:3,e:"\"Deepfake Detection應用：新聞媒體（驗證影片真偽後再發布）、社群平台（Facebook、YouTube的內容審查系"},
+{id:139,c:"ethics",q:"「AI包容性設計（Inclusive Design）」要求AI系統具備什麼特性？",o:["A. AI系統應能服務多樣化的使用者群體，包含不同能力、語言、年齡、文化背景的人", "B. AI系統的介面要使用最流行的設計風格，需要配合其他技術才能實現", "C. 讓所有AI系統都支援遊戲功能，但技術上仍有一定限制，但技術上仍有一定限制", "D. AI系統必須同時支援所有程式語言，以符合企業的實際需求"],a:0,e:"\"包容性設計原則：①無障礙性（視障用戶的語音介面、聾啞用戶的字幕功能）；"},
+{id:140,c:"ethics",q:"「AI對就業市場的影響」中，最符合目前研究共識的觀點是？",o:["A. AI將在5年內取代所有人類工作，適用於特定的業務場景，可提升系統的整體效能", "B. AI對就業市場完全沒有影響，並支援多種輸入輸出格式，可根據使用情境靈活調整", "C. AI只會影響低技能勞工，高技能人才完全不受影響，需要配合其他技術才能實現", "D. AI將自動化某些重複性任務但同時創造新職位，整體影響取決於社會是否能有效進行職能轉型"],a:3,e:"\"WEF預測AI將在2025-2030年消除8500萬個職位，但同時創造9700萬個新職位（淨增加1200萬）。"},
+{id:141,c:"skill",q:"「AI輔助新藥開發」目前在製藥業的主要應用是？",o:["A. 分子結構預測、藥物-靶點結合預測、加速臨床試驗數據分析、縮短開發時程", "B. AI直接批准藥物上市，可根據使用情境靈活調整，可根據使用情境靈活調整", "C. 取代所有藥學研究人員，可根據使用情境靈活調整，適用於特定的業務場景", "D. 直接在患者身上自動投藥，可根據使用情境靈活調整，並支援多種輸入輸出格式"],a:0,e:"\"AI製藥應用：AlphaFold2（DeepMind）成功預測蛋白質3D結構，革命性地加速了藥物靶點研究；"},
+{id:142,c:"skill",q:"「AI在金融科技（FinTech）」的應用中，下列哪項是最成熟的應用？",o:["A. AI直接替代央行做貨幣政策決定，有助於降低開發和維護成本", "B. 自動接管所有股市交易，但技術上仍有一定限制", "C. 信用評分輔助、詐欺交易偵測、智能客服、投資組合分析報告生成", "D. 取代所有銀行員工，但技術上仍有一定限制，適用於特定的業務場景"],a:2,e:"\"金融AI成熟應用：①信用評分（分析非傳統數據如手機使用習慣）；②詐欺偵測（即時分析交易模式，"},
+{id:143,c:"skill",q:"「智慧製造（Smart Manufacturing）」中生成式AI最典型的應用是？",o:["A. 直接控制機器人手臂的精細動作，但實際效果仍需進一步驗證", "B. 設計全新的工廠建築，適用於特定的業務場景，需要配合其他技術才能實現", "C. 自動進行所有財務決算，並能確保資料的安全性，並能確保資料的安全性", "D. 設備異常偵測、生產排程優化、品質瑕疵分析報告生成、維修知識庫問答"],a:3,e:"\"製造業AI應用：①預測性維護（感測器數據→異常偵測→在設備故障前提醒維修）；"},
+{id:144,c:"skill",q:"企業建構「AI輔助決策支援系統」時，最重要的設計原則是？",o:["A. 讓AI做所有決策，加快速度，但技術上仍有一定限制，並能確保資料的安全性", "B. 只在決策失敗後才使用AI分析原因，並支援多種輸入輸出格式", "C. 決策支援系統只適合大型企業，可根據使用情境靈活調整，可提升系統的整體效能", "D. AI提供數據分析和建議選項，人類保留最終決策權，並能理解AI建議的依據"],a:3,e:"\"AI決策支援設計原則：①AI提供多個選項及其優缺點，而非單一答案；"},
+{id:145,c:"skill",q:"「生成式AI用於軟體測試」中最直接的應用價值是？",o:["A. 完全取代QA測試工程師，但實際效果仍需進一步驗證，但技術上仍有一定限制", "B. 提升應用程式的執行速度，適用於特定的業務場景，並能確保資料的安全性", "C. 自動生成邊界測試案例、根據程式碼變更建議需要更新的測試、快速產生測試報告", "D. 自動修復發現的所有Bug，可根據使用情境靈活調整，可提升系統的整體效能"],a:2,e:"\"AI輔助軟體測試：GitHub Copilot等能根據函數自動生成多個測試案例（正常、邊界值、異常輸入）；"},
+{id:146,c:"skill",q:"企業「AI組織變革管理（Change Management）」成功的關鍵要素是什麼？",o:["A. 強制所有員工立即使用AI，不允許例外，並支援多種輸入輸出格式", "B. 建立清晰的溝通、提供充分培訓、尋找AI推廣大使、設立激勵機制", "C. 只對技術部門進行AI培訓，可提升系統的整體效能", "D. 完全由IT部門主導所有AI決策，可提升系統的整體效能"],a:1,e:"\"AI組織變革管理的關鍵要素：①溝通（讓員工了解AI是輔助工具而非取代威脅）；"},
+{id:147,c:"skill",q:"「AI輔助市場研究」最能提升哪個環節的效率？",o:["A. 親赴現場的質化訪談，需要配合其他技術才能實現，並能確保資料的安全性", "B. 大量文件摘要分析、競爭對手監測、消費者評論情感分析、市場趨勢識別", "C. 產品實體測試，但技術上仍有一定限制，可提升系統的整體效能", "D. 財務報告審計，但技術上仍有一定限制，可根據使用情境靈活調整"],a:1,e:"\"市場研究AI應用：①文獻摘要（快速整理大量產業報告）；②競爭對手監測（自動追蹤競品新聞和社"},
+{id:148,c:"skill",q:"「AI生成式廣告（AI-Generated Advertising）」在數位行銷中的主要應用是？",o:["A. 完全取代廣告代理商，並支援多種輸入輸出格式，有助於降低開發和維護成本", "B. 個人化廣告文案生成、A/B測試自動化、創意素材快速迭代、多語言本地化廣告", "C. 只用於圖像廣告，需要配合其他技術才能實現，以符合企業的實際需求", "D. 只適合大型跨國企業使用，但實際效果仍需進一步驗證，但實際效果仍需進一步驗證"],a:1,e:"\"AI廣告應用：①個人化文案（根據用戶標籤生成不同版本的廣告文案）；"},
+{id:149,c:"skill",q:"「AI輔助供應鏈風險管理」最能提升哪方面的能力？",o:["A. 直接控制倉庫機器人的搬運作業，以符合企業的實際需求", "B. 替代所有採購人員，適用於特定的業務場景，適用於特定的業務場景", "C. 只用於追蹤貨物的GPS定位，可根據使用情境靈活調整", "D. 即時監控供應商風險信號、預測供應中斷、優化庫存水位、提前發出預警"],a:3,e:"\"供應鏈風險AI應用：①供應商風險監控（新聞輿情、財務健康度、地緣政治風險）；"},
+{id:150,c:"skill",q:"「生成式AI在學術研究」中最有價值的應用是？",o:["A. 快速文獻整理和摘要、識別研究缺口、生成研究假設、資料分析輔助", "B. AI直接撰寫發表論文，可根據使用情境靈活調整", "C. 取代所有研究人員，以符合企業的實際需求，但技術上仍有一定限制", "D. 只適用於理工科研究，以符合企業的實際需求，需要配合其他技術才能實現"],a:0,e:"\"AI研究輔助應用：①文獻回顧（快速摘要大量論文，識別研究趨勢）；"}
+];
+
+var S={qs:[],idx:0,answered:false,results:[],sRight:0,sWrong:0,sSkip:0,lRight:0,lWrong:0,selCat:"all"};
+
+function loadStats(){try{var d=JSON.parse(localStorage.getItem("genai31")||"{}");S.lRight=d.r||0;S.lWrong=d.w||0;}catch(e){}}
+function saveStats(){try{localStorage.setItem("genai31",JSON.stringify({r:S.lRight,w:S.lWrong}));}catch(e){}}
+function resetStats(){S.lRight=0;S.lWrong=0;saveStats();updateBar();showToast("已重置歷史記錄","info");}
+
+function init(){loadStats();renderCats();updateBar();}
+
+function renderCats(){
+  var g=document.getElementById("catGrid");
+  var h="";
+  h+="<button class=\"cat-btn active\" onclick=\"selectCat(this,'all')\"><span class=\"cat-icon\">🎯</span>全部範圍<span class=\"cat-cnt\">"+Q.length+"題</span></button>";
+  for(var i=0;i<CATS.length;i++){
+    var c=CATS[i];
+    var n=Q.filter(function(q){return q.c===c.id;}).length;
+    h+="<button class=\"cat-btn\" onclick=\"selectCat(this,'"+c.id+"')\"><span class=\"cat-icon\">"+c.icon+"</span>"+c.name.slice(3)+"<span class=\"cat-cnt\">"+n+"題</span></button>";
+  }
+  g.innerHTML=h;
+}
+
+function selectCat(btn,id){
+  S.selCat=id;
+  var btns=document.querySelectorAll(".cat-btn");
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove("active");
+  btn.classList.add("active");
+}
+
+function updateBar(){
+  var t=S.lRight+S.lWrong;
+  document.getElementById("sDone").textContent=t;
+  document.getElementById("sRight").textContent=S.lRight;
+  document.getElementById("sWrong").textContent=S.lWrong;
+  document.getElementById("sAcc").textContent=t>0?Math.round(S.lRight/t*100)+"%":"—";
+}
+
+function startQuiz(n){
+  if(n===undefined) n=20;
+  var pool=S.selCat==="all"?Q.slice():Q.filter(function(q){return q.c===S.selCat;});
+  pool=pool.slice().sort(function(){return Math.random()-.5;});
+  S.qs=pool.slice(0,Math.min(n,pool.length));
+  S.idx=0;S.results=[];S.sRight=0;S.sWrong=0;S.sSkip=0;S.answered=false;
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
+  renderQ();
+}
+
+function renderQ(){
+  var total=S.qs.length,i=S.idx;
+  if(i>=total){showResult();return;}
+  var q=S.qs[i];
+  var cat=null;
+  for(var k=0;k<CATS.length;k++) if(CATS[k].id===q.c){cat=CATS[k];break;}
+  S.answered=false;
+  var pct=Math.round(i/total*100);
+  document.getElementById("pText").textContent="第 "+(i+1)+" 題 / "+total;
+  document.getElementById("pPct").textContent=pct+"%";
+  document.getElementById("pFill").style.width=pct+"%";
+  document.getElementById("qN").textContent="Q."+("0"+(i+1)).slice(-2);
+  document.getElementById("qC").textContent=cat?cat.name:"";
+  document.getElementById("qC").style.color=cat?cat.color:"";
+  document.getElementById("qT").textContent=q.q;
+  var expEl=document.getElementById("expBox");
+  expEl.className="exp";expEl.innerHTML="";
+  var L=["A","B","C","D"];
+  var html="";
+  for(var j=0;j<q.o.length;j++){
+    html+="<button class=\"opt-btn\" onclick=\"selectAns("+j+")\" id=\"o"+j+"\"><span class=\"opt-letter\">"+L[j]+"</span><span>"+q.o[j].replace(/^[A-D]\. */,"")+"</span></button>";
+  }
+  document.getElementById("opts").innerHTML=html;
+  document.getElementById("bSkip").classList.remove("hidden");
+  document.getElementById("bNext").classList.add("hidden");
+  document.getElementById("bFin").classList.add("hidden");
+  var card=document.getElementById("qCard");
+  card.style.animation="none";
+  setTimeout(function(){card.style.animation="slideUp .35s ease";},10);
+}
+
+function selectAns(chosen){
+  if(S.answered) return;
+  S.answered=true;
+  var q=S.qs[S.idx];
+  var correct=q.a;
+  var ok=(chosen===correct);
+  var L=["A","B","C","D"];
+  var btns=document.querySelectorAll(".opt-btn");
+  for(var i=0;i<btns.length;i++){
+    btns[i].disabled=true;
+    if(i===correct) btns[i].classList.add("correct");
+    else if(i===chosen&&!ok) btns[i].classList.add("wrong");
+  }
+  /* 解析欄：顯示正確答案選項 + 說明文字 */
+  var expEl=document.getElementById("expBox");
+  expEl.innerHTML="<span class=\"exp-ans\">✅ 正確答案："+L[correct]+"</span><br><b>📌 解析：</b> "+q.e;
+  expEl.className="exp show";
+  if(ok){showToast("✅ 答對了！","correct");S.sRight++;S.lRight++;}
+  else{showToast("❌ 答錯了","wrong");S.sWrong++;S.lWrong++;}
+  saveStats();updateBar();
+  S.results.push({q:q,chosen:chosen,correct:correct,ok:ok});
+  document.getElementById("bSkip").classList.add("hidden");
+  if(S.idx>=S.qs.length-1) document.getElementById("bFin").classList.remove("hidden");
+  else document.getElementById("bNext").classList.remove("hidden");
+}
+
+function skipQ(){
+  if(S.answered) return;
+  var q=S.qs[S.idx];
+  S.results.push({q:q,chosen:-1,correct:q.a,ok:false,skipped:true});
+  S.sSkip++;nextQ();
+}
+function nextQ(){S.idx++;if(S.idx>=S.qs.length)showResult();else renderQ();}
+
+/* 新增：結束作答並回首頁 */
+function endAndHome(){
+  if(confirm("確定要結束作答並回到首頁？目前進度將不計入統計。")){
+    document.getElementById("quizScreen").classList.add("hidden");
+    document.getElementById("startScreen").classList.remove("hidden");
+  }
+}
+
+function showResult(){
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
+  document.getElementById("revList").classList.add("hidden");
+  var total=S.results.length,correct=S.sRight;
+  var pct=total>0?Math.round(correct/total*100):0;
+  var pass=(pct>=70);
+  document.getElementById("rScore").textContent=pct+"%";
+  document.getElementById("rLbl").textContent=pass?"🎉 達到及格標準！":"📚 繼續加油，再接再厲！";
+  document.getElementById("rSub").textContent="共 "+total+" 題 · 正確 "+correct+" 題 · 正確率 "+pct+"%";
+  var badge=document.getElementById("rBadge");
+  badge.textContent=pass?"✅ 通過！（≥70分）":"❌ 未通過（需≥70分）";
+  badge.className="pb "+(pass?"pb-ok":"pb-ng");
+  document.getElementById("rC").textContent=correct;
+  document.getElementById("rW").textContent=S.sWrong;
+  document.getElementById("rS").textContent=S.sSkip;
+  var wrap=document.getElementById("catRes");
+  wrap.innerHTML="<div style=\"font-size:13px;color:var(--mu);margin-bottom:11px;text-align:left;\">📊 各類別表現</div>";
+  for(var k=0;k<CATS.length;k++){
+    var cat=CATS[k];
+    var cr=S.results.filter(function(r){return r.q.c===cat.id;});
+    if(!cr.length) continue;
+    var c=cr.filter(function(r){return r.ok;}).length;
+    var p=Math.round(c/cr.length*100);
+    var row=document.createElement("div");
+    row.className="cat-row";
+    row.innerHTML="<div class=\"cat-name\">"+cat.icon+" "+cat.name.slice(3)+"</div><div class=\"cat-bw\"><div class=\"cat-bar\" style=\"width:"+p+"%;background:"+cat.color+"\"></div></div><div class=\"cat-pct\">"+p+"%</div>";
+    wrap.appendChild(row);
+  }
+}
+
+function toggleReview(){
+  var el=document.getElementById("revList");
+  if(!el.classList.contains("hidden")){el.classList.add("hidden");return;}
+  var wrong=S.results.filter(function(r){return !r.ok;});
+  if(!wrong.length){showToast("🎯 全部答對！","info");return;}
+  var L=["A","B","C","D"];
+  var html="<div style=\"font-size:13px;color:var(--mu);margin-bottom:11px;\">📋 答錯/跳過（"+wrong.length+"題）</div>";
+  for(var i=0;i<wrong.length;i++){
+    var r=wrong[i];
+    var ch=r.skipped?"（跳過）":"<span class=\"wa\">"+L[r.chosen]+". "+(r.q.o[r.chosen]||"").replace(/^[A-D]\. */,"")+"</span>";
+    var ca="<span class=\"ca\">"+L[r.correct]+". "+(r.q.o[r.correct]||"").replace(/^[A-D]\. */,"")+"</span>";
+    html+="<div class=\"rev-item\"><div class=\"rev-q\">"+r.q.q+"</div><div class=\"rev-ans\">你的答案："+ch+"<br>✅ 正確答案："+ca+"</div><div class=\"rev-exp\">📌 "+r.q.e+"</div></div>";
+  }
+  el.innerHTML=html;
+  el.classList.remove("hidden");
+}
+
+function backHome(){
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+  updateBar();
+}
+
+var toastTimer;
+function showToast(msg,type){
+  var t=document.getElementById("toast");
+  t.textContent=msg;
+  t.className="toast show "+(type==="correct"?"ct":type==="wrong"?"wt":"");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){t.classList.remove("show");},1800);
+}
+
+init();
+</script>
+</body>
+</html>
